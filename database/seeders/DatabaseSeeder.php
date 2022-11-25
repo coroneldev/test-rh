@@ -27,9 +27,9 @@ class DatabaseSeeder extends Seeder
         /*Temporal para llenado*/
         $this->call(RhTrnAdjuntoSeeder::class);
         $this->call(RhTrnPersonaSeeder::class);
-      /*  $this->call(RhTrnParentescoSeeder::class);
+        $this->call(RhTrnParentescoSeeder::class);
         $this->call(RhTrnIdiomaSeeder::class);
-        $this->call(RhTrnFormacionSeeder::class);*/
+        $this->call(RhTrnFormacionSeeder::class);
 
     }
 }
