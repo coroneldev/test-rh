@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('rh_trn_idiomas', function (Blueprint $table) {
             $table->id();
             $table->integer('nivel_conocimiento');
-            $table->unsignedBigInteger('persona_id');
+            $table->unsignedBigInteger('persona_id')->nullable();
             $table->foreign('persona_id')->references('id')->on('rh_trn_personas');
-            $table->unsignedBigInteger('idioma_id');
+            $table->unsignedBigInteger('idioma_id')->nullable();
             $table->foreign('idioma_id')->references('id')->on('rh_cl_idiomas');
-            $table->unsignedBigInteger('adjunto_id');
+            $table->unsignedBigInteger('adjunto_id')->nullable();
             $table->foreign('adjunto_id')->references('id')->on('rh_trn_adjuntos');
-            $table->unsignedBigInteger('estado_id');
+            $table->unsignedBigInteger('estado_id')->nullable();
             $table->foreign('estado_id')->references('id')->on('rh_cl_estados');
 
             $table->timestamps();

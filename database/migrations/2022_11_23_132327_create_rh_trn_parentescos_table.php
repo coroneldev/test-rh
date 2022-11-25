@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('rh_trn_parentescos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('persona_id');
+            $table->unsignedBigInteger('persona_id')->nullable();
             $table->foreign('persona_id')->references('id')->on('rh_trn_personas');
-            $table->unsignedBigInteger('parentesco_id');
+            $table->unsignedBigInteger('parentesco_id')->nullable();
             $table->foreign('parentesco_id')->references('id')->on('rh_cl_parentescos');
             $table->string('nombres',50);
             $table->string('apellidos',100);
