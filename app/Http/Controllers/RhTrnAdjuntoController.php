@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
 use App\Models\RhTrnAdjunto;
 
 class RhTrnAdjuntoController extends Controller
@@ -32,6 +32,27 @@ class RhTrnAdjuntoController extends Controller
      */
     public function store(Request $request)
     {
+        $validate = Validator::make($request->all(),
+        [
+            'path' => 'required',
+            'tipo' => 'required',
+        ],
+        [
+            'path.required' => 'El campo del enlace de direccion es requerido',
+            'tipo.required' => 'El campo tipo adjunto es requerido',
+
+        ]);
+        
+        if($validate->fails()){
+            return response()->json(
+                [
+                    'status' => false,
+                    'message'=> 'validation error',
+                    'errors' => $validate->errors()
+                ], 401
+            );
+        }
+
 
         $file_adjunto = $request->file('path');
         $path_adjunto = $file_adjunto->store('adjunto');
