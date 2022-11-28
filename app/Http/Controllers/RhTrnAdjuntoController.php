@@ -55,7 +55,7 @@ class RhTrnAdjuntoController extends Controller
 
 
         $file_adjunto = $request->file('path');
-        $path_adjunto = $file_adjunto->store('adjunto');
+        $path_adjunto = $file_adjunto->store('public/fotos');
 
         $adjunto = new RhTrnAdjunto();
 
