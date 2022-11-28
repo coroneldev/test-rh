@@ -60,7 +60,7 @@ Route::delete('/ciudades/{id}', [RhClCiudadController::class, 'destroy']);
 Route::get('/adjuntos', [RhTrnAdjuntoController::class, 'index']);
 Route::post('/adjuntos', [RhTrnAdjuntoController::class, 'store']);
 Route::get('/adjuntos/{id}', [RhTrnAdjuntoController::class, 'show']);
-Route::put('/adjuntos/{id}', [RhTrnAdjuntoController::class, 'update']);
+Route::post('/adjuntos/{id}', [RhTrnAdjuntoController::class, 'update']);
 
 Route::get('/personas', [RhTrnPersonaController::class, 'index']);
 //Route::post('/personas', [RhTrnPersonaController::class, 'preRegistro']);

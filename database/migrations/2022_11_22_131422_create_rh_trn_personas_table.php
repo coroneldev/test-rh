@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('nro_nit',15)->nullable();
             $table->string('nombre_seguro',50)->nullable();
             $table->string('nro_seguro_medico',15)->nullable();
-            $table->string('licencia_conducir', 5)->nullable();
+            $table->boolean('licencia_conducir')->nullable();
             $table->string('licencia_categoria',10)->nullable();
             $table->unsignedBigInteger('adjunto_id')->nullable();
             $table->foreign('adjunto_id')->references('id')->on('rh_trn_adjuntos');

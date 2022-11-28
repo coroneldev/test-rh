@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\RhTrnAdjunto;
 
 class RhTrnAdjuntoController extends Controller
@@ -31,6 +32,7 @@ class RhTrnAdjuntoController extends Controller
      */
     public function store(Request $request)
     {
+
         $file_adjunto = $request->file('path');
         $path_adjunto = $file_adjunto->store('adjunto');
 
