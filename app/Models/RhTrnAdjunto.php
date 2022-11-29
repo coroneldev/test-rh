@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class RhTrnAdjunto extends Model
 {
     use HasFactory;
+
     protected $table = 'rh_trn_adjuntos';
+
     protected $fillable = ['path', 'tipo'];
+
+    
 }

@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class RhClEstado extends Model
 {
     use HasFactory;
+    protected $table = 'rh_cl_estados';
 }

@@ -14,7 +14,7 @@ class RhTrnPersonaController extends Controller
      */
     public function index()
     {
-        $personas = RhTrnPersona::all();
+        $personas = RhTrnPersona::all()->load('estadoCivil', 'genero', 'pais', 'ciudad');
 
         return response()->json([
             'status'    => true,
@@ -81,6 +81,7 @@ class RhTrnPersonaController extends Controller
     {
         $persona = RhTrnPersona::find($id);
 
+        
         if (is_null($persona)) {
             return response()->json([
                 'status'    => false,
@@ -91,7 +92,7 @@ class RhTrnPersonaController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $persona
+            'data'      => $persona = RhTrnPersona::all()->load('estadoCivil', 'genero', 'pais', 'ciudad')
         ], 200);
     }
 

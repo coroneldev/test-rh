@@ -10,4 +10,11 @@ class RhClGenero extends Model
     use HasFactory;
     protected $table = 'rh_cl_generos';
 
+    protected $fillable = ['sigla', 'nombre'];
+
+    public function rh_trn_personas()
+    {
+        return $this->hasMany(RhTrnPersona::class);
+    }
+
 }
