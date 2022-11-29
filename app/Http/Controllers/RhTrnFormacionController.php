@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RhTrnFormacion;
+use App\Models\RhTrnPersona;
 
 class RhTrnFormacionController extends Controller
 {
@@ -20,6 +21,24 @@ class RhTrnFormacionController extends Controller
             'status'    => true,
             'message'   => 'Registro de formaciones recuperadas exitosamente',
             'data'      => $formaciones
+        ], 200);
+    }
+
+    public function formacionPersonal($id)
+    {
+        $persona = RhTrnPersona::find($id);
+
+        if (is_null($persona)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 404);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      =>  RhtrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto')
         ], 200);
     }
 

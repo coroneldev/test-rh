@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RhTrnParentescoSeeder::class);
         $this->call(RhTrnIdiomaSeeder::class);
         $this->call(RhTrnFormacionSeeder::class);
+        $this->call(RhTrnExperienciaLaboralSeeder::class);
 
     }
 }

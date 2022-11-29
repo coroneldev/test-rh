@@ -18,6 +18,7 @@ use App\Http\Controllers\RhTrnPersonaController;
 use App\Http\Controllers\RhTrnParentescoController;
 use App\Http\Controllers\RhTrnFormacionController;
 use App\Http\Controllers\RhTrnIdiomaController;
+use App\Http\Controllers\RhTrnExperienciaLaboralController;
 
 
 /*
@@ -111,6 +112,15 @@ Route::get('/estados', [RhClEstadoController::class, 'index']);
 Route::post('/estados', [RhClEstadoController::class, 'store']);
 Route::get('/estados/{id}', [RhClEstadoController::class, 'show']);
 Route::put('/estados/{id}', [RhClEstadoController::class, 'update']);
+
+Route::get('/experiencias-laborales', [RhTrnExperienciaLaboralController::class, 'index']);
+Route::post('/experiencias-laborales', [RhTrnExperienciaLaboralController::class, 'store']);
+Route::get('/experiencias-laborales/{id}', [RhTrnExperienciaLaboralController::class, 'show']);
+Route::put('/experiencias-laborales/{id}', [RhTrnExperienciaLaboralController::class, 'update']);
+
+Route::get('/formaciones-personales/{id}', [RhTrnFormacionController::class, 'formacionPersonal']);
+
+
 
 
 

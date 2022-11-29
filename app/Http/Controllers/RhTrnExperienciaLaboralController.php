@@ -14,7 +14,13 @@ class RhTrnExperienciaLaboralController extends Controller
      */
     public function index()
     {
-        //
+        $experiencias = RhTrnExperienciaLaboral::all();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de experiencias recuperados exitosamente',
+            'data'      => $experiencias
+        ], 200);
     }
 
     /**
@@ -25,7 +31,7 @@ class RhTrnExperienciaLaboralController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
