@@ -60,6 +60,7 @@ class RhTrnAdjuntoController extends Controller
 
         $adjunto->path  = $path_adjunto;
         $adjunto->tipo  = $request->tipo;
+        
 
         $adjunto->save();
 

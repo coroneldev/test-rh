@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\RhClGrado;
+use App\Models\RhClInstitucion;
 
-class RhClGradoController extends Controller
+class RhClInstitucionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,14 +14,13 @@ class RhClGradoController extends Controller
      */
     public function index()
     {
-        $grados = RhClGrado::all();
+        $instituciones = RhClInstitucion::all();
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Registro de grados recuperados exitosamente',
-            'data'      => $grados
+            'message'   => 'Registro de instituciones recuperadas exitosamente',
+            'data'      => $instituciones
         ], 200);
-        
     }
 
     /**
@@ -32,15 +31,17 @@ class RhClGradoController extends Controller
      */
     public function store(Request $request)
     {
-        $grado = new RhClGrado();
-        $grado->nombre       = $request->nombre;
-        $grado->sigla        = $request->sigla;
-        $grado->save();
+        $institucion = new RhClInstitucion();
+
+        $institucion->nombre              = $request->nombre;
+        $institucion->sigla               = $request->sigla;
+        $institucion->tipo_institucion    = $request->tipo_institucion;
+        $institucion->save();
 
         return response()->json([
             'status'    => true,
             'message'   => 'Registro creado exitosamente',
-            'data'      => $grado
+            'data'      => $institucion
         ], 201);
     }
 
@@ -52,9 +53,9 @@ class RhClGradoController extends Controller
      */
     public function show($id)
     {
-        $grado = RhClGrado::find($id);
+        $institucion = RhClInstitucion::find($id);
 
-        if (is_null($grado)) {
+        if (is_null($institucion)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
@@ -64,7 +65,7 @@ class RhClGradoController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $grado
+            'data'      => $institucion
         ], 200);
     }
 
@@ -77,23 +78,26 @@ class RhClGradoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $grado = RhClGrado::find($id);
+        $institucion = RhClInstitucion::find($id);
 
-        if (is_null($grado)) {
+        if (is_null($institucion)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
             ], 404);
         }
-        $grado->nombre    = $request->nombre;
-        $grado->sigla     = $request->sigla;
-        $grado->save();
+
+        $institucion->nombre              = $request->nombre;
+        $institucion->sigla               = $request->sigla;
+        $institucion->tipo_institucion    = $request->tipo_institucion;
+        $institucion->save();
 
         return response()->json([
             'status'    => true,
             'message'   => 'Registro modificado exitosamente',
-            'data'      => $grado
+            'data'      => $institucion
         ], 200);
+        
     }
 
     /**

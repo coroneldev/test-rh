@@ -10,6 +10,8 @@ use App\Http\Controllers\RhClCiudadController;
 use App\Http\Controllers\RhClParentescoController;
 use App\Http\Controllers\RhClIdiomaController;
 use App\Http\Controllers\RhClGradoController;
+use App\Http\Controllers\RhClInstitucionController;
+use App\Http\Controllers\RhClEstadoController;
 
 use App\Http\Controllers\RhTrnAdjuntoController;
 use App\Http\Controllers\RhTrnPersonaController;
@@ -95,10 +97,22 @@ Route::post('/idiomas-personas', [RhTrnIdiomaController::class, 'store']);
 Route::get('/idiomas-personas/{id}', [RhTrnIdiomaController::class, 'show']);
 Route::put('/idiomas-personas/{id}', [RhTrnIdiomaController::class, 'update']);
 
+Route::get('/instituciones', [RhClInstitucionController::class, 'index']);
+Route::post('/instituciones', [RhClInstitucionController::class, 'store']);
+Route::get('/instituciones/{id}', [RhClInstitucionController::class, 'show']);
+Route::put('/instituciones/{id}', [RhClInstitucionController::class, 'update']);
+
 Route::get('/grados', [RhClGradoController::class, 'index']);
 Route::post('/grados', [RhClGradoController::class, 'store']);
 Route::get('/grados/{id}', [RhClGradoController::class, 'show']);
 Route::put('/grados/{id}', [RhClGradoController::class, 'update']);
+
+Route::get('/estados', [RhClEstadoController::class, 'index']);
+Route::post('/estados', [RhClEstadoController::class, 'store']);
+Route::get('/estados/{id}', [RhClEstadoController::class, 'show']);
+Route::put('/estados/{id}', [RhClEstadoController::class, 'update']);
+
+
 
 
 

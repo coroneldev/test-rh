@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class RhClInstitucion extends Model
 {
     use HasFactory;
+    protected $table = 'rh_cl_instituciones';
 }
