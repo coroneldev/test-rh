@@ -9,4 +9,11 @@ class RhClGrado extends Model
 {
     use HasFactory;
     protected $table = 'rh_cl_grados';
+
+    protected $fillable = ['nombre', 'sigla'];
+
+    public function formacion()
+    {
+        return $this->hasMany(RhTrnFormacion::class);
+    }
 }

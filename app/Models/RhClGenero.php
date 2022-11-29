@@ -12,7 +12,7 @@ class RhClGenero extends Model
 
     protected $fillable = ['sigla', 'nombre'];
 
-    public function rh_trn_personas()
+    public function persona()
     {
         return $this->hasMany(RhTrnPersona::class);
     }

@@ -9,4 +9,16 @@ class RhClEstado extends Model
 {
     use HasFactory;
     protected $table = 'rh_cl_estados';
+
+    protected $fillable = ['nombre', 'categoria'];
+
+    public function persona()
+    {
+        return $this->hasMany(RhTrnPersona::class);
+    }
+
+    public function formacion()
+    {
+        return $this->hasMany(RhTrnFormacion::class);
+    }
 }

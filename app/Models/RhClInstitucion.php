@@ -9,4 +9,11 @@ class RhClInstitucion extends Model
 {
     use HasFactory;
     protected $table = 'rh_cl_instituciones';
+
+    protected $fillable = ['nombre', 'sigla'];
+
+    public function formacion()
+    {
+        return $this->hasMany(RhTrnFormacion::class);
+    }
 }

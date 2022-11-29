@@ -12,8 +12,13 @@ class RhClCiudad extends Model
 
     protected $fillable = ['nombre', 'sigla'];
 
-    public function rh_trn_personas()
+    public function persona()
     {
         return $this->hasMany(RhTrnPersona::class);
+    }
+
+    public function formacion()
+    {
+        return $this->hasMany(RhTrnFormacion::class);
     }
 }

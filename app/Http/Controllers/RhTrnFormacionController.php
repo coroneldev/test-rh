@@ -14,7 +14,7 @@ class RhTrnFormacionController extends Controller
      */
     public function index()
     {
-        $formaciones = RhtrnFormacion::all();
+        $formaciones = RhtrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto');
 
         return response()->json([
             'status'    => true,
@@ -73,7 +73,7 @@ class RhTrnFormacionController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $formacion
+            'data'      => $formacion = RhtrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto')
         ], 200);
     }
 
