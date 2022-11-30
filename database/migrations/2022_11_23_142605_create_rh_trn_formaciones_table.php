@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('rh_trn_formaciones', function (Blueprint $table) {
             $table->id();
+            $table->string('titulo', 50);
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->boolean('provision_nacional');
-            $table->string('registro_profesinal', 25);
+            $table->string('registro_profesional', 25);
             $table->unsignedBigInteger('persona_id')->nullable();
             $table->foreign('persona_id')->references('id')->on('rh_trn_personas');
             $table->unsignedBigInteger('pais_id')->nullable();

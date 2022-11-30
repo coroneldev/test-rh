@@ -83,10 +83,14 @@ Route::get('/parentescos-personas/{id}', [RhTrnParentescoController::class, 'sho
 Route::put('/parentescos-personas/{id}', [RhTrnParentescoController::class, 'update']);
 Route::delete('/parentescos-personas/{id}', [RhTrnParentescoController::class, 'destroy']);
 
-Route::get('/formacion-academica', [RhTrnFormacionController::class, 'index']);
-Route::post('/formacion-academica', [RhTrnFormacionController::class, 'store']);
+
+/*Route::post('/formacion-academica', [RhTrnFormacionController::class, 'store']);
 Route::get('/formacion-academica/{id}', [RhTrnFormacionController::class, 'show']);
-Route::put('/formacion-academica/{id}', [RhTrnFormacionController::class, 'update']);
+Route::put('/formacion-academica/{id}', [RhTrnFormacionController::class, 'update']);*/
+
+Route::get('/formacion-academica', [RhTrnFormacionController::class, 'index']);
+Route::get('/formacion-academica/{id}', [RhTrnFormacionController::class, 'formacionAcademicaId']);
+Route::get('/formacion-academica/persona/{id}', [RhTrnFormacionController::class, 'formacionAcademicaPersonaId']);
 
 Route::get('/idiomas', [RhClIdiomaController::class, 'index']);
 Route::post('/idiomas', [RhClIdiomaController::class, 'store']);
@@ -118,7 +122,7 @@ Route::post('/experiencias-laborales', [RhTrnExperienciaLaboralController::class
 Route::get('/experiencias-laborales/{id}', [RhTrnExperienciaLaboralController::class, 'show']);
 Route::put('/experiencias-laborales/{id}', [RhTrnExperienciaLaboralController::class, 'update']);
 
-Route::get('/formaciones-personales/{id}', [RhTrnFormacionController::class, 'formacionPersonal']);
+
 
 
 

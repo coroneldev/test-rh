@@ -24,7 +24,25 @@ class RhTrnFormacionController extends Controller
         ], 200);
     }
 
-    public function formacionPersonal($id)
+    public function formacionAcademicaId($id)
+    {
+        $formacion = RhtrnFormacion::find($id);
+
+        if (is_null($formacion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 404);
+        }
+        $formacion =RhTrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto');
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $formacion
+        ], 200);
+    }
+
+    public function formacionAcademicaPersonaId($id)
     {
         $persona = RhTrnPersona::find($id);
 
@@ -35,12 +53,16 @@ class RhTrnFormacionController extends Controller
             ], 404);
         }
 
+        $personas = RhtrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto');
+
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      =>  RhtrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto')
+            'data'      =>  $personas
         ], 200);
     }
+
+
 
     /**
      * Store a newly created resource in storage.
