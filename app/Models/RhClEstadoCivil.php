@@ -13,9 +13,9 @@ class RhClEstadoCivil extends Model
 
     protected $fillable = ['sigla', 'nombre'];
 
-    public function persona()
+    public function personas()
     {
-        return $this->hasMany(RhTrnPersona::class);
+        return $this->hasMany(RhTrnPersona::class, 'id');
     }
 
 }

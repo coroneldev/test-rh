@@ -12,9 +12,9 @@ class RhClPais extends Model
 
     protected $fillable = ['nombre', 'sigla'];
 
-    public function persona()
+    public function personas()
     {
-        return $this->hasMany(RhTrnPersona::class);
+        return $this->hasMany(RhTrnPersona::class, 'id');
     }
     
 }
