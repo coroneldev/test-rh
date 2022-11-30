@@ -17,8 +17,4 @@ class RhClCiudad extends Model
         return $this->hasMany(RhTrnPersona::class);
     }
 
-    public function formacion()
-    {
-        return $this->hasMany(RhTrnFormacion::class);
-    }
 }

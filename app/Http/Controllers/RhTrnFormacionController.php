@@ -34,7 +34,7 @@ class RhTrnFormacionController extends Controller
                 'message'   => 'Solicitud de registro no encontrado'
             ], 404);
         }
-        $formacion =RhTrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto');
+        $formacion = RhTrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto');
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
@@ -73,11 +73,11 @@ class RhTrnFormacionController extends Controller
     public function store(Request $request)
     {
         $formacion = new RhtrnFormacion();
-
+        $formacion->titulo                    = $request->titulo;
         $formacion->fecha_inicio              = $request->fecha_inicio;
         $formacion->fecha_fin                 = $request->fecha_fin;
         $formacion->provision_nacional        = $request->provision_nacional;
-        $formacion->registro_profesinal       = $request->registro_profesinal;
+        $formacion->registro_profesional       = $request->registro_profesional;
         $formacion->persona_id                = $request->persona_id;
         $formacion->pais_id                   = $request->pais_id;
         $formacion->ciudad_id                 = $request->ciudad_id;
@@ -135,11 +135,11 @@ class RhTrnFormacionController extends Controller
                 'message'   => 'Registro no encontrado'
             ], 404);
         }
-
+        $formacion->titulo                    = $request->titulo;
         $formacion->fecha_inicio              = $request->fecha_inicio;
         $formacion->fecha_fin                 = $request->fecha_fin;
         $formacion->provision_nacional        = $request->provision_nacional;
-        $formacion->registro_profesinal       = $request->registro_profesinal;
+        $formacion->registro_profesional      = $request->registro_profesional;
         $formacion->persona_id                = $request->persona_id;
         $formacion->pais_id                   = $request->pais_id;
         $formacion->ciudad_id                 = $request->ciudad_id;

@@ -11,6 +11,7 @@ class RhTrnFormacion extends Model
     protected $table = 'rh_trn_formaciones';
 
     protected $fillable = [
+        'titulo',
         'fecha_inicio',
         'fecha_fin',
         'provision_nacional',
@@ -28,6 +29,7 @@ class RhTrnFormacion extends Model
     {
         //return $this->hasMany(RhTrnPersona::class, 'persona_id');
         return $this->belongsTo(RhTrnPersona::class, 'persona_id');
+        //return $this->belongsToMany(RhTrnPersona::class, 'persona_id');
     }
     public function pais()
     {

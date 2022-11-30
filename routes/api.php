@@ -89,6 +89,7 @@ Route::get('/formacion-academica/{id}', [RhTrnFormacionController::class, 'show'
 Route::put('/formacion-academica/{id}', [RhTrnFormacionController::class, 'update']);*/
 
 Route::get('/formacion-academica', [RhTrnFormacionController::class, 'index']);
+Route::post('/formacion-academica', [RhTrnFormacionController::class, 'store']);
 Route::get('/formacion-academica/{id}', [RhTrnFormacionController::class, 'formacionAcademicaId']);
 Route::get('/formacion-academica/persona/{id}', [RhTrnFormacionController::class, 'formacionAcademicaPersonaId']);
 
