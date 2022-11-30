@@ -27,4 +27,10 @@ class RhTrnParentesco extends Model
         return $this->belongsTo(RhClParentesco::class, 'parentesco_id');
     }
 
+    public function personas()
+    {
+        return $this->belongsToMany(RhTrnPersona::class, 'rh_trn_personas');
+        
+    }
+
 }

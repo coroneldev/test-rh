@@ -12,5 +12,10 @@ class RhClInstitucion extends Model
 
     protected $fillable = ['nombre', 'sigla'];
 
+    public function formaciones()
+    {
+        return $this->hasMany(RhTrnFormacion::class, 'id');
+    }
+
 
 }

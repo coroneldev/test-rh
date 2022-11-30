@@ -9,4 +9,14 @@ class RhClIdioma extends Model
 {
     use HasFactory;
     protected $table = 'rh_cl_idiomas';
+
+    protected $fillable = [
+        'sigla',
+        'nombre'
+    ];
+
+    public function idiomas()
+    {
+        return $this->hasMany(RhTrnIdioma::class, 'id');
+    }
 }

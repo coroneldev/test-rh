@@ -44,7 +44,6 @@ class RhTrnFormacionController extends Controller
         ], 200);
     }
 
-    /* Confllicto en esta funcion */
     public function formacionAcademicaPersonaId($id)
     {
         $persona = RhtrnPersona::find($id);

@@ -12,8 +12,9 @@ class RhClGrado extends Model
 
     protected $fillable = ['nombre', 'sigla'];
 
-    public function formacion()
+    public function formaciones()
     {
-        return $this->hasMany(RhTrnFormacion::class);
+        return $this->hasMany(RhTrnFormacion::class, 'id');
     }
+
 }

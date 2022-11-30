@@ -60,4 +60,18 @@ class RhTrnPersona extends Model
     {
         return $this->belongsTo(RhClCiudad::class, 'ciudad_id');
     }
+
+    public function parentesco()
+    {
+        return $this->belongsToMany(RhTrnParentesco::class, 'rh_trn_personas');
+        
+    }
+
+    public function formaciones()
+    {
+        return $this->belongsToMany(RhTrnFormacion::class, 'rh_trn_formaciones');
+        
+    }
+
+
 }

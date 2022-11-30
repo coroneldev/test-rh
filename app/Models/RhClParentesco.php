@@ -17,4 +17,5 @@ class RhClParentesco extends Model
     {
         return $this->hasMany(RhTrnParentesco::class, 'id');
     }
+
 }

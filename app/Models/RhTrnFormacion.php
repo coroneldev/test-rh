@@ -55,4 +55,12 @@ class RhTrnFormacion extends Model
     {
         return $this->belongsTo(RhTrnAdjunto::class, 'adjunto_id');
     }
+
+
+    public function personas()
+    {
+        return $this->belongsToMany(RhTrnPersona::class, 'rh_trn_formaciones');
+        
+    }
+    
 }
