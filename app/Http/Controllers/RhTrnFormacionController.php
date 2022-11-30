@@ -24,11 +24,32 @@ class RhTrnFormacionController extends Controller
         ], 200);
     }
 
+
     public function formacionAcademicaId($id)
     {
         $formacion = RhtrnFormacion::find($id);
 
         if (is_null($formacion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 404);
+        }
+        $personas = RhtrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto');
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      =>  $personas
+        ], 200);
+    }
+
+    /* Confllicto en esta funcion */
+    public function formacionAcademicaPersonaId($id)
+    {
+        $persona = RhtrnPersona::find($id);
+
+        if (is_null($persona)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
@@ -41,27 +62,6 @@ class RhTrnFormacionController extends Controller
             'data'      => $formacion
         ], 200);
     }
-
-    public function formacionAcademicaPersonaId($id)
-    {
-        $persona = RhTrnPersona::find($id);
-
-        if (is_null($persona)) {
-            return response()->json([
-                'status'    => false,
-                'message'   => 'Solicitud de registro no encontrado'
-            ], 404);
-        }
-
-        $personas = RhtrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto');
-
-        return response()->json([
-            'status'    => true,
-            'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      =>  $personas
-        ], 200);
-    }
-
 
 
     /**
@@ -77,7 +77,7 @@ class RhTrnFormacionController extends Controller
         $formacion->fecha_inicio              = $request->fecha_inicio;
         $formacion->fecha_fin                 = $request->fecha_fin;
         $formacion->provision_nacional        = $request->provision_nacional;
-        $formacion->registro_profesional       = $request->registro_profesional;
+        $formacion->registro_profesional      = $request->registro_profesional;
         $formacion->persona_id                = $request->persona_id;
         $formacion->pais_id                   = $request->pais_id;
         $formacion->ciudad_id                 = $request->ciudad_id;
@@ -113,9 +113,9 @@ class RhTrnFormacionController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $formacion = RhtrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto')
-        ], 200);
+            'message'   => 'Registro modificado exitosamente',
+            'data'      => $formacion
+        ]);
     }
 
     /**
