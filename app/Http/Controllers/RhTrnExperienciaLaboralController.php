@@ -31,7 +31,27 @@ class RhTrnExperienciaLaboralController extends Controller
      */
     public function store(Request $request)
     {
+        $experiencia = new RhTrnExperienciaLaboral();
 
+        $experiencia->lugar_trabajo            = $request->lugar_trabajo;
+        $experiencia->fecha_inicio             = $request->fecha_inicio;
+        $experiencia->fecha_fin                = $request->fecha_fin;
+        $experiencia->cargo_desempeniado       = $request->cargo_desempeniado;
+        $experiencia->funcion_desempeniada     = $request->funcion_desempeniada;
+        $experiencia->nombre_inmediato_sup     = $request->nombre_inmediato_sup;
+        $experiencia->cargo_inmediato_sup      = $request->cargo_inmediato_sup;
+        $experiencia->salario_percibido        = $request->salario_percibido;
+        $experiencia->motivo_desvinculacion    = $request->motivo_desvinculacion;
+        $experiencia->persona_id               = $request->persona_id;
+        $experiencia->adjunto_id               = $request->adjunto_id;
+
+        $experiencia->save();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro creado exitosamente',
+            'data'      => $experiencia
+        ], 201);
     }
 
     /**

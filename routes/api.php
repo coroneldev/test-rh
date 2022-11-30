@@ -66,7 +66,6 @@ Route::get('/adjuntos/{id}', [RhTrnAdjuntoController::class, 'show']);
 Route::put('/adjuntos/{id}', [RhTrnAdjuntoController::class, 'update']);
 
 Route::get('/personas', [RhTrnPersonaController::class, 'index']);
-//Route::post('/personas', [RhTrnPersonaController::class, 'preRegistro']);
 Route::post('/personas', [RhTrnPersonaController::class, 'store']);
 Route::get('/personas/{id}', [RhTrnPersonaController::class, 'show']);
 Route::put('/personas/{id}', [RhTrnPersonaController::class, 'update']);
@@ -120,8 +119,7 @@ Route::put('/estados/{id}', [RhClEstadoController::class, 'update']);
 
 Route::get('/experiencias-laborales', [RhTrnExperienciaLaboralController::class, 'index']);
 Route::post('/experiencias-laborales', [RhTrnExperienciaLaboralController::class, 'store']);
-Route::get('/experiencias-laborales/{id}', [RhTrnExperienciaLaboralController::class, 'show']);
-Route::put('/experiencias-laborales/{id}', [RhTrnExperienciaLaboralController::class, 'update']);
+
 
 
 
