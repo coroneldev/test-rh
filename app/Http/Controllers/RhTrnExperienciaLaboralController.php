@@ -147,6 +147,21 @@ class RhTrnExperienciaLaboralController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $experiencia = RhTrnExperienciaLaboral::find($id);
+
+        if (is_null($experiencia)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro de experiencia no encontrado'
+            ], 404);
+        }
+
+        $experiencia->delete();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de experiencia eliminado exitosamente',
+            'data'      => $experiencia
+        ], 200);
     }
 }

@@ -19,6 +19,8 @@ use App\Http\Controllers\RhTrnParentescoController;
 use App\Http\Controllers\RhTrnFormacionController;
 use App\Http\Controllers\RhTrnIdiomaController;
 use App\Http\Controllers\RhTrnExperienciaLaboralController;
+use App\Http\Controllers\RhTrnCursosController;
+use App\Http\Controllers\RhTrnDeclaracionJuradaController;
 
 
 /*
@@ -87,6 +89,7 @@ Route::post('/formacion-academica', [RhTrnFormacionController::class, 'store']);
 Route::get('/formacion-academica/{id}', [RhTrnFormacionController::class, 'show']);
 Route::put('/formacion-academica/{id}', [RhTrnFormacionController::class, 'update']);
 Route::get('/formacion-academica/persona/{id}', [RhTrnFormacionController::class, 'formacionesPersonaId']);
+Route::delete('/formacion-academica/{id}', [RhTrnFormacionController::class, 'destroy']);
 
 Route::get('/idiomas', [RhClIdiomaController::class, 'index']);
 Route::post('/idiomas', [RhClIdiomaController::class, 'store']);
@@ -118,9 +121,21 @@ Route::post('/experiencias-laborales', [RhTrnExperienciaLaboralController::class
 Route::get('/experiencias-laborales/{id}', [RhTrnExperienciaLaboralController::class, 'show']);
 Route::put('/experiencias-laborales/{id}', [RhTrnExperienciaLaboralController::class, 'update']);
 Route::get('/experiencias-laborales/persona/{id}', [RhTrnExperienciaLaboralController::class, 'experienciasLaboralesPersonaId']);
+Route::delete('/experiencias-laborales/{id}', [RhTrnExperienciaLaboralController::class, 'destroy']);
 
 
+Route::get('/cursos', [RhTrnCursosController::class, 'index']);
+Route::post('/cursos', [RhTrnCursosController::class, 'store']);
+Route::get('/cursos/{id}', [RhTrnCursosController::class, 'show']);
+Route::put('/cursos/{id}', [RhTrnCursosController::class, 'update']);
+Route::delete('/cursos/{id}', [RhTrnCursosController::class, 'destroy']);
 
+
+Route::get('/declaraciones-juradas', [RhTrnDeclaracionJuradaController::class, 'index']);
+Route::post('/declaraciones-juradas', [RhTrnDeclaracionJuradaController::class, 'store']);
+Route::get('/declaraciones-juradas/{id}', [RhTrnDeclaracionJuradaController::class, 'show']);
+Route::put('/declaraciones-juradas/{id}', [RhTrnDeclaracionJuradaController::class, 'update']);
+Route::delete('/declaraciones-juradas/{id}', [RhTrnDeclaracionJuradaController::class, 'destroy']);
 
 
 

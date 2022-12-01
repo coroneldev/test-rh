@@ -127,7 +127,22 @@ class RhTrnFormacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $formacion = RhTrnFormacion::find($id);
+
+        if (is_null($formacion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro de persona no encontrado'
+            ], 404);
+        }
+
+        $formacion->delete();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de formacion eliminado exitosamente',
+            'data'      => $formacion
+        ], 200);
     }
 
     public function formacionesPersonaId($id)
