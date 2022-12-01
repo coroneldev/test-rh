@@ -23,6 +23,24 @@ class RhTrnExperienciaLaboralController extends Controller
         ], 200);
     }
 
+
+    public function experienciaLaboralPersonaId($id)
+    {
+        $experiencia = RhTrnExperienciaLaboral::where('persona_id', $id)->get();
+
+        if (is_null($experiencia)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 404);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de experiencias recuperados exitosamente',
+            'data'      => $experiencia
+        ], 200);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -43,7 +61,9 @@ class RhTrnExperienciaLaboralController extends Controller
         $experiencia->salario_percibido        = $request->salario_percibido;
         $experiencia->motivo_desvinculacion    = $request->motivo_desvinculacion;
         $experiencia->persona_id               = $request->persona_id;
-        $experiencia->adjunto_id               = $request->adjunto_id;
+        if($request->adjunto_id != 0){
+            $experiencia->adjunto_id           = $request->adjunto_id;
+        }
 
         $experiencia->save();
 
@@ -53,6 +73,7 @@ class RhTrnExperienciaLaboralController extends Controller
             'data'      => $experiencia
         ], 201);
     }
+    
 
     /**
      * Display the specified resource.
@@ -62,7 +83,20 @@ class RhTrnExperienciaLaboralController extends Controller
      */
     public function show($id)
     {
-        //
+        $experiencia = RhTrnExperienciaLaboral::find($id);
+
+        if (is_null($experiencia)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 404);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $experiencia
+        ], 200);
     }
 
     /**

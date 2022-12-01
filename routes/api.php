@@ -63,7 +63,7 @@ Route::delete('/ciudades/{id}', [RhClCiudadController::class, 'destroy']);
 Route::get('/adjuntos', [RhTrnAdjuntoController::class, 'index']);
 Route::post('/adjuntos', [RhTrnAdjuntoController::class, 'store']);
 Route::get('/adjuntos/{id}', [RhTrnAdjuntoController::class, 'show']);
-Route::put('/adjuntos/{id}', [RhTrnAdjuntoController::class, 'update']);
+Route::post('/adjuntos/{id}', [RhTrnAdjuntoController::class, 'update']);
 
 Route::get('/personas', [RhTrnPersonaController::class, 'index']);
 Route::post('/personas', [RhTrnPersonaController::class, 'store']);
@@ -82,15 +82,11 @@ Route::get('/parentescos-personas/{id}', [RhTrnParentescoController::class, 'sho
 Route::put('/parentescos-personas/{id}', [RhTrnParentescoController::class, 'update']);
 Route::delete('/parentescos-personas/{id}', [RhTrnParentescoController::class, 'destroy']);
 
-
-/*Route::post('/formacion-academica', [RhTrnFormacionController::class, 'store']);
-Route::get('/formacion-academica/{id}', [RhTrnFormacionController::class, 'show']);
-Route::put('/formacion-academica/{id}', [RhTrnFormacionController::class, 'update']);*/
-
 Route::get('/formacion-academica', [RhTrnFormacionController::class, 'index']);
 Route::post('/formacion-academica', [RhTrnFormacionController::class, 'store']);
 Route::get('/formacion-academica/{id}', [RhTrnFormacionController::class, 'formacionAcademicaId']);
 Route::get('/formacion-academica/persona/{id}', [RhTrnFormacionController::class, 'formacionAcademicaPersonaId']);
+Route::put('/formacion-academica/{id}', [RhTrnFormacionController::class, 'update']);
 
 Route::get('/idiomas', [RhClIdiomaController::class, 'index']);
 Route::post('/idiomas', [RhClIdiomaController::class, 'store']);
@@ -119,6 +115,8 @@ Route::put('/estados/{id}', [RhClEstadoController::class, 'update']);
 
 Route::get('/experiencias-laborales', [RhTrnExperienciaLaboralController::class, 'index']);
 Route::post('/experiencias-laborales', [RhTrnExperienciaLaboralController::class, 'store']);
+Route::post('/experiencias-laborales/{id}', [RhTrnExperienciaLaboralController::class, 'show']);
+Route::get('/experiencias-laborales/persona/{id}', [RhTrnExperienciaLaboralController::class, 'experienciaLaboralPersonaId']);
 
 
 

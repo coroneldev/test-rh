@@ -16,5 +16,10 @@ class RhClPais extends Model
     {
         return $this->hasMany(RhTrnPersona::class, 'id');
     }
+
+    public function formaciones()
+    {
+        return $this->hasMany(RhTrnFormacion::class, 'id');
+    }
     
 }

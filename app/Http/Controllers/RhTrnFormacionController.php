@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RhTrnFormacion;
 use App\Models\RhTrnPersona;
+use Illuminate\Support\Facades\DB;
 
 class RhTrnFormacionController extends Controller
 {
@@ -16,6 +17,7 @@ class RhTrnFormacionController extends Controller
     public function index()
     {
         $formaciones = RhtrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto');
+       // $formaciones = RhtrnFormacion::all()->load('pais', 'ciudad', 'estado', 'grado', 'institucion');
 
         return response()->json([
             'status'    => true,
@@ -35,6 +37,7 @@ class RhTrnFormacionController extends Controller
                 'message'   => 'Solicitud de registro no encontrado'
             ], 404);
         }
+
         $personas = RhtrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto');
 
         return response()->json([
@@ -145,7 +148,9 @@ class RhTrnFormacionController extends Controller
         $formacion->estado_id                 = $request->estado_id;
         $formacion->grado_id                  = $request->grado_id;
         $formacion->institucion_id            = $request->institucion_id;
-        $formacion->adjunto_id                = $request->adjunto_id;
+        if($request->adjunto_id != 0){
+            $formacion->adjunto_id            = $request->adjunto_id;
+        }
         $formacion->save();
 
         return response()->json([

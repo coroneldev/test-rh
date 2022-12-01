@@ -36,7 +36,9 @@ class RhTrnIdiomaController extends Controller
         $idiomasPersonas->nivel_conocimiento  = $request->nivel_conocimiento;
         $idiomasPersonas->persona_id          = $request->persona_id;
         $idiomasPersonas->idioma_id           = $request->idioma_id;
-        $idiomasPersonas->adjunto_id          = $request->adjunto_id;
+        if($request->adjunto_id != 0){
+            $idiomasPersonas->adjunto_id      = $request->adjunto_id;
+        }
         $idiomasPersonas->estado_id           = $request->estado_id;
         $idiomasPersonas->save();
 

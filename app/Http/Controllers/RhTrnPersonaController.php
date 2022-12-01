@@ -55,7 +55,9 @@ class RhTrnPersonaController extends Controller
         $persona->nro_seguro_medico   = $request->nro_seguro_medico;
         $persona->licencia_conducir   = $request->licencia_conducir;
         $persona->licencia_categoria  = $request->licencia_categoria;
-        $persona->adjunto_id          = $request->adjunto_id;
+        if($request->adjunto_id != 0){
+            $persona->adjunto_id      = $request->adjunto_id;
+        }
         $persona->domicilio           = $request->domicilio;
         $persona->estado_civil_id     = $request->estado_civil_id;
         $persona->genero_id           = $request->genero_id;
