@@ -117,6 +117,7 @@ Route::get('/experiencias-laborales', [RhTrnExperienciaLaboralController::class,
 Route::post('/experiencias-laborales', [RhTrnExperienciaLaboralController::class, 'store']);
 Route::post('/experiencias-laborales/{id}', [RhTrnExperienciaLaboralController::class, 'show']);
 Route::get('/experiencias-laborales/persona/{id}', [RhTrnExperienciaLaboralController::class, 'experienciaLaboralPersonaId']);
+Route::put('/experiencias-laborales/{id}', [RhTrnExperienciaLaboralController::class, 'update']);
 
 
 
