@@ -24,7 +24,7 @@ class RhTrnExperienciaLaboralController extends Controller
     }
 
 
-    public function experienciaLaboralPersonaId($id)
+    public function experienciasLaboralesPersonaId($id)
     {
         $experiencia = RhTrnExperienciaLaboral::where('persona_id', $id)->get();
 
@@ -32,7 +32,7 @@ class RhTrnExperienciaLaboralController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 404);
+            ], 200);
         }
 
         return response()->json([
@@ -89,7 +89,7 @@ class RhTrnExperienciaLaboralController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 404);
+            ], 200);
         }
 
         return response()->json([
@@ -114,7 +114,7 @@ class RhTrnExperienciaLaboralController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 404);
+            ], 200);
         }
         $experiencia->lugar_trabajo            = $request->lugar_trabajo;
         $experiencia->fecha_inicio             = $request->fecha_inicio;

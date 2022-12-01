@@ -34,7 +34,9 @@ class RhTrnAdjuntoController extends Controller
     {
         $validate = Validator::make($request->all(),
         [
-            'path' => 'required',
+            // 'path' => 'required|mimes:jpg, png, jpeg|max:2048',
+            // 'path' => 'required|mimes:pdf|max:2048',
+            'path' => 'required|max:2048',
             'tipo' => 'required',
         ],
         [
@@ -49,7 +51,7 @@ class RhTrnAdjuntoController extends Controller
                     'status' => false,
                     'message'=> 'validation error',
                     'errors' => $validate->errors()
-                ], 401
+                ], 200
             );
         }
 

@@ -17,54 +17,12 @@ class RhTrnFormacionController extends Controller
     public function index()
     {
         $formaciones = RhtrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto');
-       // $formaciones = RhtrnFormacion::all()->load('pais', 'ciudad', 'estado', 'grado', 'institucion');
-
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de formaciones recuperadas exitosamente',
             'data'      => $formaciones
         ], 200);
     }
-
-
-    public function formacionAcademicaId($id)
-    {
-        $formacion = RhtrnFormacion::find($id);
-
-        if (is_null($formacion)) {
-            return response()->json([
-                'status'    => false,
-                'message'   => 'Solicitud de registro no encontrado'
-            ], 404);
-        }
-
-        $personas = RhtrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto');
-
-        return response()->json([
-            'status'    => true,
-            'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      =>  $personas
-        ], 200);
-    }
-
-    public function formacionAcademicaPersonaId($id)
-    {
-        $persona = RhtrnPersona::find($id);
-
-        if (is_null($persona)) {
-            return response()->json([
-                'status'    => false,
-                'message'   => 'Solicitud de registro no encontrado'
-            ], 404);
-        }
-        $formacion = RhTrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto');
-        return response()->json([
-            'status'    => true,
-            'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $formacion
-        ], 200);
-    }
-
 
     /**
      * Store a newly created resource in storage.
@@ -86,9 +44,10 @@ class RhTrnFormacionController extends Controller
         $formacion->estado_id                 = $request->estado_id;
         $formacion->grado_id                  = $request->grado_id;
         $formacion->institucion_id            = $request->institucion_id;
-        $formacion->adjunto_id                = $request->adjunto_id;
+        if($request->adjunto_id != 0){
+            $formacion->adjunto_id                = $request->adjunto_id;
+        }
         $formacion->save();
-
         return response()->json([
             'status'    => true,
             'message'   => 'Registro creado exitosamente',
@@ -110,7 +69,7 @@ class RhTrnFormacionController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
-            ], 404);
+            ], 200);
         }
 
         return response()->json([
@@ -135,7 +94,7 @@ class RhTrnFormacionController extends Controller
             return response()->json([
                 'status'    => false,
                 'message'   => 'Registro no encontrado'
-            ], 404);
+            ], 200);
         }
         $formacion->titulo                    = $request->titulo;
         $formacion->fecha_inicio              = $request->fecha_inicio;
@@ -169,5 +128,22 @@ class RhTrnFormacionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function formacionesPersonaId($id)
+    {
+        $formacion = RhtrnFormacion::where('persona_id', $id)->get();
+        if (is_null($formacion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+        $formacion = RhTrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto');
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $formacion
+        ], 200);
     }
 }
