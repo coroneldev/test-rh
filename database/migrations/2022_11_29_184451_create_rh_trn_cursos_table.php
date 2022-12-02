@@ -27,6 +27,7 @@ return new class extends Migration
             $table->foreign('persona_id')->references('id')->on('rh_trn_personas');
             $table->unsignedBigInteger('adjunto_id')->nullable();
             $table->foreign('adjunto_id')->references('id')->on('rh_trn_adjuntos');
+            $table->string('tipo', 50)->nullable();
             $table->timestamps();
         });
     }

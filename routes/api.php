@@ -21,6 +21,7 @@ use App\Http\Controllers\RhTrnIdiomaController;
 use App\Http\Controllers\RhTrnExperienciaLaboralController;
 use App\Http\Controllers\RhTrnCursosController;
 use App\Http\Controllers\RhTrnDeclaracionJuradaController;
+use App\Http\Controllers\RhTrnDatoLaboralController;
 
 
 /*
@@ -123,19 +124,24 @@ Route::put('/experiencias-laborales/{id}', [RhTrnExperienciaLaboralController::c
 Route::get('/experiencias-laborales/persona/{id}', [RhTrnExperienciaLaboralController::class, 'experienciasLaboralesPersonaId']);
 Route::delete('/experiencias-laborales/{id}', [RhTrnExperienciaLaboralController::class, 'destroy']);
 
-
 Route::get('/cursos', [RhTrnCursosController::class, 'index']);
 Route::post('/cursos', [RhTrnCursosController::class, 'store']);
 Route::get('/cursos/{id}', [RhTrnCursosController::class, 'show']);
+Route::get('/cursos/persona/{id}/{tipo}', [RhTrnCursosController::class, 'cursosTipoPersonaId']);
 Route::put('/cursos/{id}', [RhTrnCursosController::class, 'update']);
 Route::delete('/cursos/{id}', [RhTrnCursosController::class, 'destroy']);
-
 
 Route::get('/declaraciones-juradas', [RhTrnDeclaracionJuradaController::class, 'index']);
 Route::post('/declaraciones-juradas', [RhTrnDeclaracionJuradaController::class, 'store']);
 Route::get('/declaraciones-juradas/{id}', [RhTrnDeclaracionJuradaController::class, 'show']);
 Route::put('/declaraciones-juradas/{id}', [RhTrnDeclaracionJuradaController::class, 'update']);
 Route::delete('/declaraciones-juradas/{id}', [RhTrnDeclaracionJuradaController::class, 'destroy']);
+
+Route::get('/datos-laborales', [RhTrnDatoLaboralController::class, 'index']);
+Route::post('/datos-laborales', [RhTrnDatoLaboralController::class, 'store']);
+Route::get('/datos-laborales/{id}', [RhTrnDatoLaboralController::class, 'show']);
+Route::put('/datos-laborales/{id}', [RhTrnDatoLaboralController::class, 'update']);
+Route::delete('/datos-laborales/{id}', [RhTrnDatoLaboralController::class, 'destroy']);
 
 
 

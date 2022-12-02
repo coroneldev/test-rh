@@ -41,7 +41,7 @@ class RhTrnCursosController extends Controller
         $curso->institucion_id      = $request->institucion_id;
         $curso->persona_id          = $request->persona_id;
         $curso->adjunto_id          = $request->adjunto_id;
-
+        $curso->tipo                = $request->tipo;
         $curso->save();
 
         return response()->json([
@@ -74,6 +74,29 @@ class RhTrnCursosController extends Controller
             'data'      => $curso
         ], 200);
     }
+
+
+
+    public function cursosTipoPersonaId($id, $tipo)
+    {
+        $cursos = RhTrnCurso::where('persona_id', $id)->where('tipo', $tipo)->get();
+
+        if (is_null($cursos)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de experiencias recuperados exitosamente',
+            'data'      => $cursos
+        ], 200);
+    }
+
+
 
     /**
      * Update the specified resource in storage.
