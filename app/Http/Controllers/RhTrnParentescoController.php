@@ -14,8 +14,7 @@ class RhTrnParentescoController extends Controller
      */
     public function index()
     {
-        $parentesco = RhTrnParentesco::all();
-
+        $parentesco = RhTrnParentesco::where('activo', '=', 'true')->get();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de parentescos recuperado exitosamente',
@@ -100,7 +99,6 @@ class RhTrnParentescoController extends Controller
         $parentesco->cedula_identidad        = $request->cedula_identidad;
         $parentesco->direccion_laboral       = $request->direccion_laboral;
         $parentesco->direccion_parentesco    = $request->direccion_parentesco;
-        $parentesco->correo_electronico      = $request->correo_electronico;
 
         $parentesco->save();
 
@@ -127,8 +125,8 @@ class RhTrnParentescoController extends Controller
                 'message'   => 'Registro de persona no encontrado'
             ], 404);
         }
-
-        $parentesco->delete();
+        $parentesco->activo                  = false;
+        $parentesco->save();
 
         return response()->json([
             'status'    => true,

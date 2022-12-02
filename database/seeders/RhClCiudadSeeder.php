@@ -16,7 +16,6 @@ class RhClCiudadSeeder extends Seeder
     public function run()
     {
         DB::table('rh_cl_ciudades')->insert([
-
             'nombre' => 'LA PAZ',
             'sigla' =>  'LP',
         ]);

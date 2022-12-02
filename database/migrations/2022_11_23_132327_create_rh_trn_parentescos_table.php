@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('direccion_laboral');
             $table->text('direccion_parentesco');
             $table->string('correo_electronico',25);
+            $table->boolean('activo')->default(1);
             $table->timestamps();
         });
     }

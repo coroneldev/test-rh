@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('rh_cl_accesos', function (Blueprint $table) {
-            $table->id();
+            $table->id(); 
+            $table->string('nombre', 100);
+            $table->string('observacion', 100);
             $table->timestamps();
         });
     }

@@ -24,6 +24,7 @@ class RhTrnParentescoSeeder extends Seeder
             'direccion_laboral' => 'CALLE MANUEL CARPIO NRO 22',
             'direccion_parentesco' => 'ZONA SOPOCACHI',
             'correo_electronico' => 'JPEREZ@GMAIL.COM',
+            'activo' => 'TRUE',
         ]);
     }
 }
