@@ -17,11 +17,28 @@ class RhClEstadoSeeder extends Seeder
     {
         DB::table('rh_cl_estados')->insert([
             'nombre' => 'CONCLUIDO',
-            'categoria' =>  'CONC',
+            'categoria' =>  'ETAPA',
         ]);
         DB::table('rh_cl_estados')->insert([
             'nombre' => 'EN PROCESO',
-            'categoria' =>  'PROC',
+            'categoria' =>  'ETAPA',
+        ]);
+        DB::table('rh_cl_estados')->insert([
+            'nombre' => 'EN CURSO',
+            'categoria' =>  'ETAPA',
+        ]);
+        
+        DB::table('rh_cl_estados')->insert([
+            'nombre' => 'REGULAR',
+            'categoria' =>  'NIVEL DE CONOCIMIENTO',
+        ]);
+        DB::table('rh_cl_estados')->insert([
+            'nombre' => 'BUENO',
+            'categoria' =>  'NIVEL DE CONOCIMIENTO',
+        ]);
+        DB::table('rh_cl_estados')->insert([
+            'nombre' => 'MUY BUENO',
+            'categoria' =>  'NIVEL DE CONOCIMIENTO',
         ]);
     }
 }
