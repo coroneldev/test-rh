@@ -96,6 +96,12 @@ class RhTrnIdiomaController extends Controller
         $idiomaPersona->idioma_id            = $request->idioma_id;
         $idiomaPersona->adjunto_id           = $request->adjunto_id;
         $idiomaPersona->estado_id            = $request->estado_id;
+        $idiomaPersona->verificado          = $request->verificado;
+        $idiomaPersona->editable            = $request->editable;
+        $idiomaPersona->observacion         = $request->observacion;
+        $idiomaPersona->sol_edicion         = $request->sol_edicion;
+        $idiomaPersona->motivo_sol          = $request->motivo_sol;
+
         $idiomaPersona->save();
 
         return response()->json([

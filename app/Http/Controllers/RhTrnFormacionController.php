@@ -110,6 +110,11 @@ class RhTrnFormacionController extends Controller
         if($request->adjunto_id != 0){
             $formacion->adjunto_id            = $request->adjunto_id;
         }
+        $formacion->verificado                = $request->verificado;
+        $formacion->editable                  = $request->editable;
+        $formacion->observacion               = $request->observacion;
+        $formacion->sol_edicion               = $request->sol_edicion;
+        $formacion->motivo_sol                = $request->motivo_sol;
         $formacion->save();
 
         return response()->json([

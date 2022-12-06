@@ -16,11 +16,11 @@ class RhTrnIdiomaSeeder extends Seeder
     public function run()
     {
         DB::table('rh_trn_idiomas')->insert([
-            'nivel_conocimiento' => 75,
-            'persona_id' => '1',
-            'idioma_id' => '1',
-            'adjunto_id' => '1',
-            'estado_id' => '1',
+            'nivel_conocimiento'     => 75,
+            'persona_id'             =>  1,
+            'idioma_id'              =>  1,
+            'adjunto_id'             =>  1,
+            'estado_id'              =>  1,
         ]);
     }
 }
