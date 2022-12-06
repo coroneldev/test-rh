@@ -130,6 +130,12 @@ class RhTrnExperienciaLaboralController extends Controller
         if($request->adjunto_id != 0){
             $experiencia->adjunto_id               = $request->adjunto_id;
         }
+
+        $experiencia->verificado          = $request->verificado;
+        $experiencia->editable            = $request->editable;
+        $experiencia->observacion         = $request->observacion;
+        $experiencia->sol_edicion         = $request->sol_edicion;
+        $experiencia->motivo_sol          = $request->motivo_sol;
         $experiencia->save();
 
         return response()->json([

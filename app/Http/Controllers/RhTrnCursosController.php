@@ -41,6 +41,7 @@ class RhTrnCursosController extends Controller
         $curso->persona_id          = $request->persona_id;
         $curso->adjunto_id          = $request->adjunto_id;
         $curso->tipo                = $request->tipo;
+        $curso->conocimiento        = $request->conocimiento;
         $curso->save();
 
         return response()->json([
@@ -119,8 +120,8 @@ class RhTrnCursosController extends Controller
         $curso->institucion_id       = $request->institucion_id;
         $curso->persona_id           = $request->persona_id;
         $curso->adjunto_id           = $request->adjunto_id;
+        $curso->conocimiento         = $request->conocimiento;
         $curso->tipo                 = $request->tipo;
-        $curso->activo               = $request->activo;
         $curso->verificado           = $request->verificado;
         $curso->editable             = $request->editable;
         $curso->observacion          = $request->observacion;

@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('rh_trn_cursos', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin');
+            $table->date('fecha_inicio')->nullable();
+            $table->date('fecha_fin')->nullable();
             $table->string('nombre', 50);
-            $table->string('duracion', 20);
+            $table->string('duracion', 20)->nullable();
             $table->unsignedBigInteger('estado_id')->nullable();
             $table->foreign('estado_id')->references('id')->on('rh_cl_estados');
             $table->unsignedBigInteger('institucion_id')->nullable();
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->unsignedBigInteger('adjunto_id')->nullable();
             $table->foreign('adjunto_id')->references('id')->on('rh_trn_adjuntos');
             $table->string('tipo', 50)->nullable();
+            $table->string('conocimiento')->nullable();
             $table->boolean('activo')->default(1);
             $table->boolean('verificado')->default(0);
             $table->boolean('editable')->default(1);

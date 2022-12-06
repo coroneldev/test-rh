@@ -24,7 +24,7 @@ class RhTrnCursoSeeder extends Seeder
             'persona_id'       =>   1,
             'adjunto_id'       =>   1, 
             'tipo'             =>  'SEMINARIO',
-
+            'conocimiento'     =>  'REGULAR',
         ]);
     }
 }

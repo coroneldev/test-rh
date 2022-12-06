@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('rh_trn_experiencias_laborales', function (Blueprint $table) {
             $table->id();
-            $table->string('lugar_trabajo', 50);
+            $table->string('lugar_trabajo', 100);
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->string('cargo_desempeniado', 50);
@@ -28,6 +28,13 @@ return new class extends Migration
             $table->foreign('persona_id')->references('id')->on('rh_trn_personas');
             $table->unsignedBigInteger('adjunto_id')->nullable();
             $table->foreign('adjunto_id')->references('id')->on('rh_trn_adjuntos');
+            $table->boolean('activo')->default(1);
+            $table->boolean('verificado')->default(0);
+            $table->boolean('editable')->default(1);
+            $table->string('observacion')->nullable();
+            $table->boolean('sol_edicion')->default(0);
+            $table->string('motivo_sol')->nullable();
+
             $table->timestamps();
         });
     }
