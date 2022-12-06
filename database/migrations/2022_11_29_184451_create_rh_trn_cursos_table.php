@@ -28,6 +28,14 @@ return new class extends Migration
             $table->unsignedBigInteger('adjunto_id')->nullable();
             $table->foreign('adjunto_id')->references('id')->on('rh_trn_adjuntos');
             $table->string('tipo', 50)->nullable();
+
+            $table->boolean('activo')->default(1);
+            $table->boolean('verificado')->default(0);
+            $table->boolean('editable')->default(1);
+            $table->string('observacion')->nullable();
+            $table->boolean('sol_edicion')->default(0);
+            $table->string('motivo_sol')->nullable();
+            
             $table->timestamps();
         });
     }

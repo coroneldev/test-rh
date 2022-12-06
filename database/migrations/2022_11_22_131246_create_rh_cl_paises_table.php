@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('rh_cl_paises', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre',25);
+            $table->string('nombre',50);
             $table->string('sigla',5);
             $table->timestamps();
         });

@@ -14,8 +14,9 @@ class RhTrnPersonaController extends Controller
      */
     public function index()
     {
-        $personas = RhTrnPersona::all()->load('estadoCivil', 'genero', 'pais', 'ciudad');
+      //  $personas = RhTrnPersona::all()->load('estadoCivil', 'genero', 'pais', 'ciudad');
 
+        $personas = RhTrnPersona::where('activo', '=', 'true')->get();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de generos recuperadas exitosamente',

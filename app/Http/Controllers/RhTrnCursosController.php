@@ -14,8 +14,7 @@ class RhTrnCursosController extends Controller
      */
     public function index()
     {
-        $cursos = RhTrnCurso::all();
-
+        $cursos = RhTrnCurso::where('activo', '=', 'true')->get();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de cursos recuperadas exitosamente',
@@ -80,15 +79,12 @@ class RhTrnCursosController extends Controller
     public function cursosTipoPersonaId($id, $tipo)
     {
         $cursos = RhTrnCurso::where('persona_id', $id)->where('tipo', $tipo)->get();
-
         if (is_null($cursos)) {
             return response()->json([
                 'status'    => false,
                 'message'   => 'Solicitud de registro no encontrado'
             ], 200);
         }
-
-
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de experiencias recuperados exitosamente',
@@ -115,14 +111,21 @@ class RhTrnCursosController extends Controller
             ], 404);
         }
 
-        $curso->fecha_inicio        = $request->fecha_inicio;
-        $curso->fecha_fin           = $request->fecha_fin;
-        $curso->nombre              = $request->nombre;
-        $curso->duracion            = $request->duracion;
-        $curso->estado_id           = $request->estado_id;
-        $curso->institucion_id      = $request->institucion_id;
-        $curso->persona_id          = $request->persona_id;
-        $curso->adjunto_id          = $request->adjunto_id;
+        $curso->fecha_inicio         = $request->fecha_inicio;
+        $curso->fecha_fin            = $request->fecha_fin;
+        $curso->nombre               = $request->nombre;
+        $curso->duracion             = $request->duracion;
+        $curso->estado_id            = $request->estado_id;
+        $curso->institucion_id       = $request->institucion_id;
+        $curso->persona_id           = $request->persona_id;
+        $curso->adjunto_id           = $request->adjunto_id;
+        $curso->tipo                 = $request->tipo;
+        $curso->activo               = $request->activo;
+        $curso->verificado           = $request->verificado;
+        $curso->editable             = $request->editable;
+        $curso->observacion          = $request->observacion;
+        $curso->sol_edicion          = $request->sol_edicion;
+        $curso->motivo_sol           = $request->motivo_sol;
 
         $curso->save();
 
@@ -149,9 +152,8 @@ class RhTrnCursosController extends Controller
                 'message'   => 'Registro de curso no encontrado'
             ], 404);
         }
-
-        $curso->delete();
-
+        $curso->activo                  = false;
+        $curso->save();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de curso eliminado exitosamente',

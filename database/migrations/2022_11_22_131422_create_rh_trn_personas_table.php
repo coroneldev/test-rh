@@ -49,6 +49,7 @@ return new class extends Migration
             $table->foreign('ciudad_id')->references('id')->on('rh_cl_ciudades');
             $table->boolean('cas')->nullable();
             $table->string('nro_cas')->nullable();
+            $table->boolean('activo')->default(1);
             $table->timestamps();
         });
     }

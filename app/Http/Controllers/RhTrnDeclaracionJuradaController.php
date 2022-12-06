@@ -14,8 +14,8 @@ class RhTrnDeclaracionJuradaController extends Controller
      */
     public function index()
     {
-        $declaraciones = RhTrnDeclaracionJurada::all();
-
+        
+        $declaraciones = RhTrnDeclaracionJurada::where('activo', '=', 'true')->get();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de declaraciones recuperadas exitosamente',
@@ -122,7 +122,8 @@ class RhTrnDeclaracionJuradaController extends Controller
             ], 404);
         }
 
-        $declaracion->delete();
+        $declaracion->activo                  = false;
+        $declaracion->save();
 
         return response()->json([
             'status'    => true,
