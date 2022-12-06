@@ -58,7 +58,7 @@ class RhTrnCursosController extends Controller
      */
     public function show($id)
     {
-        $curso = RhTrnCurso::find($id);
+        $curso = RhTrnCurso::find($id)->where('activo', '=', 'true')->get();
 
         if (is_null($curso)) {
             return response()->json([

@@ -17,21 +17,21 @@ return new class extends Migration
             $table->id();
             $table->string('paterno',50)->nullable();
             $table->string('materno',50)->nullable();
-            $table->string('nombres',50)->nullable();
+            $table->string('nombres',100)->nullable();
             $table->string('cedula_identidad',20)->nullable();
             $table->string('expedido_ci' ,15)->nullable();
             $table->string('complemento_ci', 5)->nullable();
             $table->date('fecha_nacimiento')->nullable();
             $table->string('telefono_fijo',15)->nullable();
             $table->string('telefono_movil',15)->nullable();
-            $table->string('correo_electronico',25)->nullable();
+            $table->string('correo_electronico',50)->nullable();
             $table->string('nro_nua_afp',30)->nullable();
             $table->string('nombre_afp',50)->nullable();
             $table->string('libreta_militar',20)->nullable();
             $table->string('grupo_sanguineo',5)->nullable();
             $table->string('nombre_banco',50)->nullable();
             $table->string('nro_cuenta_bancaria',50)->nullable();
-            $table->string('nro_nit',15)->nullable();
+            $table->string('nro_nit',30)->nullable();
             $table->string('nombre_seguro',50)->nullable();
             $table->string('nro_seguro_medico',15)->nullable();
             $table->boolean('licencia_conducir')->nullable();
@@ -50,6 +50,12 @@ return new class extends Migration
             $table->boolean('cas')->nullable();
             $table->string('nro_cas')->nullable();
             $table->boolean('activo')->default(1);
+            $table->boolean('verificado')->default(0);
+            $table->boolean('editable')->default(1);
+            $table->string('observacion')->nullable();
+            $table->boolean('sol_edicion')->default(0);
+            $table->string('motivo_sol')->nullable();
+
             $table->timestamps();
         });
     }

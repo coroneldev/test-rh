@@ -95,6 +95,11 @@ class RhTrnDeclaracionJuradaController extends Controller
         $declaracion->fecha_fin        = $request->fecha_fin;
         $declaracion->adjunto_id       = $request->adjunto_id;
         $declaracion->persona_id       = $request->persona_id;
+        $declaracion->verificado       = $request->verificado;
+        $declaracion->editable         = $request->editable;
+        $declaracion->observacion      = $request->observacion;
+        $declaracion->sol_edicion      = $request->sol_edicion;
+        $declaracion->motivo_sol       = $request->motivo_sol;
 
         $declaracion->save();
 

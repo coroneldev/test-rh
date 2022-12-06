@@ -72,6 +72,7 @@ Route::get('/personas', [RhTrnPersonaController::class, 'index']);
 Route::post('/personas', [RhTrnPersonaController::class, 'store']);
 Route::get('/personas/{id}', [RhTrnPersonaController::class, 'show']);
 Route::put('/personas/{id}', [RhTrnPersonaController::class, 'update']);
+Route::delete('/personas/{id}', [RhTrnPersonaController::class, 'destroy']);
 
 Route::get('/parentescos', [RhClParentescoController::class, 'index']);
 Route::post('/parentescos', [RhClParentescoController::class, 'store']);

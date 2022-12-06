@@ -16,15 +16,14 @@ class RhTrnParentescoSeeder extends Seeder
     public function run()
     {
         DB::table('rh_trn_parentescos')->insert([
-            'persona_id' => '1',
-            'parentesco_id' => '1',
-            'nombres' => 'JUAN',
-            'apellidos' => 'PEREZ CONDORI',
-            'cedula_identidad' => '6120501',
-            'direccion_laboral' => 'CALLE MANUEL CARPIO NRO 22',
-            'direccion_parentesco' => 'ZONA SOPOCACHI',
-            'correo_electronico' => 'JPEREZ@GMAIL.COM',
-            'activo' => 'TRUE',
+            'persona_id'            =>  1,
+            'parentesco_id'         =>  1,
+            'nombres'               => 'JUAN',
+            'apellidos'             => 'PEREZ CONDORI',
+            'cedula_identidad'      => '6120501',
+            'direccion_laboral'     => 'CALLE MANUEL CARPIO NRO 22',
+            'direccion_parentesco'  => 'ZONA SOPOCACHI',
+            'correo_electronico'    => 'JPEREZ@GMAIL.COM',
         ]);
     }
 }

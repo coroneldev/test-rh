@@ -24,8 +24,13 @@ return new class extends Migration
             $table->string('cedula_identidad',20);
             $table->text('direccion_laboral');
             $table->text('direccion_parentesco');
-            $table->string('correo_electronico',30);
+            $table->string('correo_electronico',50);
             $table->boolean('activo')->default(1);
+            $table->boolean('verificado')->default(0);
+            $table->boolean('editable')->default(1);
+            $table->string('observacion')->nullable();
+            $table->boolean('sol_edicion')->default(0);
+            $table->string('motivo_sol')->nullable();
             $table->timestamps();
         });
     }

@@ -23,6 +23,12 @@ return new class extends Migration
             $table->unsignedBigInteger('persona_id')->nullable();
             $table->foreign('persona_id')->references('id')->on('rh_trn_personas');
             $table->boolean('activo')->default(1);
+            $table->boolean('verificado')->default(0);
+            $table->boolean('editable')->default(1);
+            $table->string('observacion')->nullable();
+            $table->boolean('sol_edicion')->default(0);
+            $table->string('motivo_sol')->nullable();
+
             $table->timestamps();
         });
     }

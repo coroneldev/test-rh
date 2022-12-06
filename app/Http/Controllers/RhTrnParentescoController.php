@@ -100,6 +100,11 @@ class RhTrnParentescoController extends Controller
         $parentesco->direccion_laboral       = $request->direccion_laboral;
         $parentesco->direccion_parentesco    = $request->direccion_parentesco;
 
+        $parentesco->verificado              = $request->verificado;
+        $parentesco->editable                = $request->editable;
+        $parentesco->observacion             = $request->observacion;
+        $parentesco->sol_edicion             = $request->sol_edicion;
+        $parentesco->motivo_sol              = $request->motivo_sol;
         $parentesco->save();
 
         return response()->json([
@@ -127,7 +132,6 @@ class RhTrnParentescoController extends Controller
         }
         $parentesco->activo                  = false;
         $parentesco->save();
-
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de persona eliminado exitosamente',

@@ -148,6 +148,12 @@ class RhTrnPersonaController extends Controller
         $persona->cas                 = $request->cas;
         $persona->nro_cas             = $request->nro_cas;
 
+        $persona->verificado          = $request->verificado;
+        $persona->editable            = $request->editable;
+        $persona->observacion         = $request->observacion;
+        $persona->sol_edicion         = $request->sol_edicion;
+        $persona->motivo_sol          = $request->motivo_sol;
+
         $persona->save();
 
         return response()->json([
@@ -165,6 +171,21 @@ class RhTrnPersonaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $persona = RhTrnPersona::find($id);
+
+        if (is_null($persona)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro de persona no encontrado'
+            ], 404);
+        }
+        $persona->activo                  = false;
+        $persona->save();
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de persona eliminado exitosamente',
+            'data'      => $persona
+        ], 200);
     }
+
 }
