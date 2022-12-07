@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('rh_cl_cargos', function (Blueprint $table) {
             $table->id();
-            $table->string('abreviatura', 20);
+            $table->string('nombre', 100);
+            $table->decimal('salario', 8, 2);
             $table->timestamps();
         });
     }

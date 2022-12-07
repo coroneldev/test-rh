@@ -49,6 +49,17 @@ return new class extends Migration
             $table->unsignedBigInteger('acceso_id')->nullable();
             $table->foreign('acceso_id')->references('id')->on('rh_cl_accesos');
 
+            $table->boolean('activo')->default(1);
+
+            $table->string('nro_contrato', 50);
+            $table->string('descripcion_puesto', 255);
+            $table->integer('denominacion_puesto');
+            $table->integer('clasificacion_puesto');
+            $table->string('dependencia_laboral', 50);
+            $table->integer('salario');
+            $table->integer('nro_item');
+
+
             $table->timestamps();
         });
     }

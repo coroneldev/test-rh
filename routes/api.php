@@ -99,6 +99,7 @@ Route::get('/idiomas/{id}', [RhClIdiomaController::class, 'show']);
 Route::put('/idiomas/{id}', [RhClIdiomaController::class, 'update']);
 
 Route::get('/idiomas-personas', [RhTrnIdiomaController::class, 'index']);
+Route::get('/idiomas-personas/persona/{id}', [RhTrnIdiomaController::class, 'idiomaPersonaId']);
 Route::post('/idiomas-personas', [RhTrnIdiomaController::class, 'store']);
 Route::get('/idiomas-personas/{id}', [RhTrnIdiomaController::class, 'show']);
 Route::put('/idiomas-personas/{id}', [RhTrnIdiomaController::class, 'update']);

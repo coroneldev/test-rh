@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('rh_cl_horarios', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 50);
-            $table->string('hora_inicio', 20);
-            $table->string('hora_fin', 20);
+            $table->string('hora_uno', 20);
+            $table->string('hora_dos', 20);
             $table->timestamps();
         });
     }

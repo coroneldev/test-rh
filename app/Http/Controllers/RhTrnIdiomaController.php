@@ -23,6 +23,24 @@ class RhTrnIdiomaController extends Controller
         ], 200);
     }
 
+    public function idiomaPersonaId($id)
+    {
+        $idiomaPersona = RhTrnIdioma::where('persona_id', $id)->get();
+
+        if (is_null($idiomaPersona)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de experiencias recuperados exitosamente',
+            'data'      => $idiomaPersona
+        ], 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
