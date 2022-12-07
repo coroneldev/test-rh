@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('direccion_laboral');
             $table->text('direccion_parentesco');
             $table->string('correo_electronico',50);
+            $table->string('telefono')->nullable();
             $table->boolean('activo')->default(1);
             $table->boolean('verificado')->default(0);
             $table->boolean('editable')->default(1);

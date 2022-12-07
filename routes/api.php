@@ -84,6 +84,7 @@ Route::get('/parentescos-personas', [RhTrnParentescoController::class, 'index'])
 Route::post('/parentescos-personas', [RhTrnParentescoController::class, 'store']);
 Route::get('/parentescos-personas/{id}', [RhTrnParentescoController::class, 'show']);
 Route::put('/parentescos-personas/{id}', [RhTrnParentescoController::class, 'update']);
+Route::get('/parentescos-personas/persona/{id}', [RhTrnParentescoController::class, 'parentescoPersonaId']);
 Route::delete('/parentescos-personas/{id}', [RhTrnParentescoController::class, 'destroy']);
 
 Route::get('/formacion-academica', [RhTrnFormacionController::class, 'index']);

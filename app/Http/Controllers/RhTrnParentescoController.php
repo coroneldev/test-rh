@@ -22,6 +22,22 @@ class RhTrnParentescoController extends Controller
         ], 200);
     }
 
+    public function parentescoPersonaId($id)
+    {
+        $parentetsco = RhTrnParentesco::where('persona_id', $id)->get();
+        if (is_null($parentetsco)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de experiencias recuperados exitosamente',
+            'data'      => $parentetsco
+        ], 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -40,7 +56,7 @@ class RhTrnParentescoController extends Controller
         $parentesco->direccion_laboral       = $request->direccion_laboral;
         $parentesco->direccion_parentesco    = $request->direccion_parentesco;
         $parentesco->correo_electronico      = $request->correo_electronico;
-
+        $parentesco->telefono                = $request->telefono;
         $parentesco->save();
 
         return response()->json([
@@ -99,7 +115,7 @@ class RhTrnParentescoController extends Controller
         $parentesco->cedula_identidad        = $request->cedula_identidad;
         $parentesco->direccion_laboral       = $request->direccion_laboral;
         $parentesco->direccion_parentesco    = $request->direccion_parentesco;
-
+        $parentesco->telefono                = $request->telefono;
         $parentesco->verificado              = $request->verificado;
         $parentesco->editable                = $request->editable;
         $parentesco->observacion             = $request->observacion;
