@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('rh_cl_organizmos_financiadores', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 50);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

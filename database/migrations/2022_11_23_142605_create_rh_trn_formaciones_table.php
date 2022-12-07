@@ -40,6 +40,7 @@ return new class extends Migration
             $table->string('observacion')->nullable();
             $table->boolean('sol_edicion')->default(0);
             $table->string('motivo_sol')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

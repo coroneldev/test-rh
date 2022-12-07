@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('rh_cl_tipos_contratos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 25);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

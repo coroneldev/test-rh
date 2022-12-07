@@ -58,8 +58,7 @@ return new class extends Migration
             $table->string('dependencia_laboral', 50);
             $table->integer('salario');
             $table->integer('nro_item');
-
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

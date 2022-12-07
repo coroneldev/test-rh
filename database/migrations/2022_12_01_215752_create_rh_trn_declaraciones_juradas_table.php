@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('rh_trn_declaraciones_juradas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 25);
+            $table->string('nombre', 255);
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->unsignedBigInteger('adjunto_id')->nullable();
@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('observacion')->nullable();
             $table->boolean('sol_edicion')->default(0);
             $table->string('motivo_sol')->nullable();
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

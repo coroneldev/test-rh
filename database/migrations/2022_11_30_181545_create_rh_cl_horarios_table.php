@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombre', 50);
             $table->string('hora_uno', 20);
             $table->string('hora_dos', 20);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

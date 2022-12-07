@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 100);
             $table->decimal('salario', 8, 2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

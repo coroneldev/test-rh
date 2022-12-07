@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
+
+use App\Http\Resources\RhTrnPersona as ModeloResource;
+
+
 use Illuminate\Http\Request;
 use App\Models\RhTrnPersona;
 
@@ -14,14 +19,16 @@ class RhTrnPersonaController extends Controller
      */
     public function index()
     {
-      //  $personas = RhTrnPersona::all()->load('estadoCivil', 'genero', 'pais', 'ciudad');
-
-        $personas = RhTrnPersona::where('activo', '=', 'true')->get();
-        return response()->json([
+           $personas = RhTrnPersona::all()->load('adjunto', 'estadoCivil', 'genero', 'pais', 'ciudad');
+        // $personas = RhTrnPersona::where('activo', '=', 'true')->get();
+           return response()->json([
             'status'    => true,
             'message'   => 'Registro de generos recuperadas exitosamente',
             'data'      => $personas
         ], 200);
+      //  $collection = RhTrnPersona::with(["genero", "estadoCivil"])->with("estadoCivil")->get();
+
+       // return ModeloResource::collection($collection);
     }
 
 
@@ -56,7 +63,7 @@ class RhTrnPersonaController extends Controller
         $persona->nro_seguro_medico   = $request->nro_seguro_medico;
         $persona->licencia_conducir   = $request->licencia_conducir;
         $persona->licencia_categoria  = $request->licencia_categoria;
-        if($request->adjunto_id != 0){
+        if ($request->adjunto_id != 0) {
             $persona->adjunto_id      = $request->adjunto_id;
         }
         $persona->domicilio           = $request->domicilio;
@@ -85,7 +92,7 @@ class RhTrnPersonaController extends Controller
     {
         $persona = RhTrnPersona::find($id);
 
-        
+
         if (is_null($persona)) {
             return response()->json([
                 'status'    => false,
@@ -96,7 +103,7 @@ class RhTrnPersonaController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $persona = RhTrnPersona::all()->load('estadoCivil', 'genero', 'pais', 'ciudad')
+            'data'      => $persona 
         ], 200);
     }
 
@@ -187,5 +194,4 @@ class RhTrnPersonaController extends Controller
             'data'      => $persona
         ], 200);
     }
-
 }

@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RhTrnPersona extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'rh_trn_personas';
 
@@ -44,6 +46,11 @@ class RhTrnPersona extends Model
 
     ];
 
+    public function adjunto()
+    {
+        return $this->belongsTo(RhTrnAdjunto::class, 'adjunto_id');
+    }
+    
     public function estadoCivil()
     {
         return $this->belongsTo(RhClEstadoCivil::class, 'estado_civil_id');
@@ -61,6 +68,8 @@ class RhTrnPersona extends Model
         return $this->belongsTo(RhClCiudad::class, 'ciudad_id');
     }
 
+
+    
     public function parentesco()
     {
         return $this->belongsToMany(RhTrnParentesco::class, 'rh_trn_personas');

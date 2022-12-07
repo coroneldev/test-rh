@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombre', 100);
             $table->string('sigla', 15);
             $table->string('dependencia', 50);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('sigla',15);
             $table->string('nombre',50);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
