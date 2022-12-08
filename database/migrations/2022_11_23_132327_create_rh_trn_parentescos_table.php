@@ -21,10 +21,10 @@ return new class extends Migration
             $table->foreign('parentesco_id')->references('id')->on('rh_cl_parentescos');
             $table->string('nombres',50);
             $table->string('apellidos',100);
-            $table->string('cedula_identidad',20);
+            $table->string('cedula_identidad',20)->nullable();
             $table->text('direccion_laboral');
             $table->text('direccion_parentesco');
-            $table->string('correo_electronico',50);
+            $table->string('correo_electronico',50)->nullable();
             $table->string('telefono')->nullable();
             $table->boolean('activo')->default(1);
             $table->boolean('verificado')->default(0);

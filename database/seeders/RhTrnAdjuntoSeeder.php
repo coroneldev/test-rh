@@ -16,8 +16,9 @@ class RhTrnAdjuntoSeeder extends Seeder
     public function run()
     {
         DB::table('rh_trn_adjuntos')->insert([
-            'path' => 'ubicacion del archivo para recuperar',
-            'tipo' => 'FOTO',
+            'path'        => 'ubicacion del archivo para recuperar',
+            'tipo'        => 'FOTO',
+            'nombre'      => '6833022.LP'
         ]);
     }
 }

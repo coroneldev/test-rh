@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RhTrnFormacion;
 use App\Models\RhTrnPersona;
-use Illuminate\Support\Facades\DB;
 
 class RhTrnFormacionController extends Controller
 {
@@ -16,7 +15,7 @@ class RhTrnFormacionController extends Controller
      */
     public function index()
     {
-        $formaciones = RhtrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto');
+        $formaciones = RhtrnFormacion::all()->first()::with('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto')->first();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de formaciones recuperadas exitosamente',
@@ -63,7 +62,7 @@ class RhTrnFormacionController extends Controller
      */
     public function show($id)
     {
-        $formacion = RhtrnFormacion::find($id);
+        $formacion = RhtrnFormacion::find($id)::with('adjunto')->first();
 
         if (is_null($formacion)) {
             return response()->json([
@@ -77,6 +76,22 @@ class RhTrnFormacionController extends Controller
             'message'   => 'Registro modificado exitosamente',
             'data'      => $formacion = RhTrnPersona::with(["adjunto"])->get()
         ]);
+    }
+
+    public function formacionesPersonaId($id)
+    {
+        $formacion = RhtrnFormacion::where('persona_id', $id)->first()->with('persona', 'pais', 'ciudad', 'grado', 'institucion', 'adjunto')->first();
+        if (is_null($formacion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $formacion
+        ], 200);
     }
 
     /**
@@ -146,23 +161,6 @@ class RhTrnFormacionController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de formacion eliminado exitosamente',
-            'data'      => $formacion
-        ], 200);
-    }
-
-    public function formacionesPersonaId($id)
-    {
-        $formacion = RhtrnFormacion::where('persona_id', $id)->get();
-        if (is_null($formacion)) {
-            return response()->json([
-                'status'    => false,
-                'message'   => 'Solicitud de registro no encontrado'
-            ], 200);
-        }
-        $formacion = RhTrnFormacion::all()->load('persona', 'pais', 'ciudad', 'estado', 'grado', 'institucion', 'adjunto');
-        return response()->json([
-            'status'    => true,
-            'message'   => 'Solicitud de registro recuperado exitosamente',
             'data'      => $formacion
         ], 200);
     }

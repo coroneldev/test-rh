@@ -117,7 +117,7 @@ class RhClGeneroController extends Controller
         }
 
         $genero->delete();
-
+        
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de persona eliminado exitosamente',

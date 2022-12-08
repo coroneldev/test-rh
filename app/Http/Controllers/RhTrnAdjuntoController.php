@@ -15,7 +15,6 @@ class RhTrnAdjuntoController extends Controller
      */
     public function index()
     {
-        echo "hola";
         $adjuntos = RhTrnAdjunto::all();
 
         return response()->json([
@@ -38,12 +37,14 @@ class RhTrnAdjuntoController extends Controller
             [
                 // 'path' => 'required|mimes:jpg, png, jpeg|max:2048',
                 // 'path' => 'required|mimes:pdf|max:2048',
-                'path' => 'required|max:2048',
-                'tipo' => 'required',
+                'path'          => 'required|max:2048',
+                'tipo'          => 'required',
+                'nombre'        => 'required',
             ],
             [
-                'path.required' => 'El campo del enlace de direccion es requerido',
-                'tipo.required' => 'El campo tipo adjunto es requerido',
+                'path.required'      => 'El campo del enlace de direccion es requerido',
+                'tipo.required'      => 'El campo tipo adjunto es requerido',
+                'nombre.required'    => 'El campo tipo adjunto es requerido',
 
             ]
         );
@@ -66,7 +67,7 @@ class RhTrnAdjuntoController extends Controller
 
         $adjunto->path  = $path_adjunto;
         $adjunto->tipo  = $request->tipo;
-
+        $adjunto->nombre  = $request->nombre;
 
         $adjunto->save();
 
@@ -111,26 +112,19 @@ class RhTrnAdjuntoController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $adjunto = RhTrnAdjunto::find($id);
-
-        if (is_null($adjunto)) {
-            return response()->json([
-                'status'    => false,
-                'message'   => 'Registro no encontrado'
-            ], 404);
-        }
-
-
         $validate = Validator::make(
             $request->all(),
             [
-                'path' => 'required',
-                'tipo' => 'required',
+                // 'path' => 'required|mimes:jpg, png, jpeg|max:2048',
+                // 'path' => 'required|mimes:pdf|max:2048',
+                'path'          => 'required|max:2048',
+                'tipo'          => 'required',
+                'nombre'        => 'required',
             ],
             [
-                'path.required' => 'El campo del enlace de direccion es requerido',
-                'tipo.required' => 'El campo tipo adjunto es requerido',
+                'path.required'      => 'El campo del enlace de direccion es requerido',
+                'tipo.required'      => 'El campo tipo adjunto es requerido',
+                'nombre.required'    => 'El campo tipo adjunto es requerido',
 
             ]
         );
@@ -145,12 +139,22 @@ class RhTrnAdjuntoController extends Controller
                 401
             );
         }
+        
+        $adjunto = RhTrnAdjunto::find($id);
 
-        $file_adjunto = $request->file('path');
-        $path_adjunto = $file_adjunto->store('public');
+        if (is_null($adjunto)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro no encontrado'
+            ], 404);
+        }
 
-        $adjunto->path  = $path_adjunto;
-        $adjunto->tipo  = $request->tipo;
+        $file_adjunto      = $request->file('path');
+        $path_adjunto      = $file_adjunto->store('public');
+
+        $adjunto->path     = $path_adjunto;
+        $adjunto->tipo     = $request->tipo;
+        $adjunto->nombre   = $request->nombre;
         $adjunto->save();
 
         return response()->json([

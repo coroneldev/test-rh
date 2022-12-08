@@ -14,31 +14,11 @@ class RhTrnExperienciaLaboralController extends Controller
      */
     public function index()
     {
-        $experiencias = RhTrnExperienciaLaboral::all();
-
+        $experiencias = RhTrnExperienciaLaboral::all()->first()::with('persona', 'adjunto')->first();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de experiencias recuperados exitosamente',
             'data'      => $experiencias
-        ], 200);
-    }
-
-
-    public function experienciasLaboralesPersonaId($id)
-    {
-        $experiencia = RhTrnExperienciaLaboral::where('persona_id', $id)->get();
-
-        if (is_null($experiencia)) {
-            return response()->json([
-                'status'    => false,
-                'message'   => 'Solicitud de registro no encontrado'
-            ], 200);
-        }
-
-        return response()->json([
-            'status'    => true,
-            'message'   => 'Registro de experiencias recuperados exitosamente',
-            'data'      => $experiencia
         ], 200);
     }
     /**
@@ -73,7 +53,6 @@ class RhTrnExperienciaLaboralController extends Controller
             'data'      => $experiencia
         ], 201);
     }
-    
 
     /**
      * Display the specified resource.
@@ -83,8 +62,8 @@ class RhTrnExperienciaLaboralController extends Controller
      */
     public function show($id)
     {
-        $experiencia = RhTrnExperienciaLaboral::find($id);
-
+        $experiencia = RhTrnExperienciaLaboral::find($id)::with('persona', 'adjunto')->first();
+        
         if (is_null($experiencia)) {
             return response()->json([
                 'status'    => false,
@@ -95,6 +74,23 @@ class RhTrnExperienciaLaboralController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $experiencia
+        ], 200);
+    }
+    
+    public function experienciasLaboralesPersonaId($id)
+    {
+        $experiencia = RhTrnExperienciaLaboral::where('persona_id', $id)->first()->with('persona', 'adjunto')->first();
+        if (is_null($experiencia)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de experiencias recuperados exitosamente',
             'data'      => $experiencia
         ], 200);
     }

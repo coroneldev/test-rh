@@ -14,18 +14,26 @@ class RhTrnExperienciaLaboral extends Model
     protected $table = 'rh_trn_experiencias_laborales';
 
     protected $fillable = [
-                            'lugar_trabajo', 
-                            'fecha_inicio',
-                            'fecha_fin',
-                            'cargo_desempeniado',
-                            'funcion_desempeniada',
-                            'nombre_inmediato_sup',
-                            'cargo_inmediato_sup',
-                            'salario_percibido',
-                            'motivo_desvinculacion',
-                            'persona_id',
-                            'adjunto_id',
-                            
-                        ];
+        'lugar_trabajo',
+        'fecha_inicio',
+        'fecha_fin',
+        'cargo_desempeniado',
+        'funcion_desempeniada',
+        'nombre_inmediato_sup',
+        'cargo_inmediato_sup',
+        'salario_percibido',
+        'motivo_desvinculacion',
+        'persona_id',
+        'adjunto_id',
 
+    ];
+
+    public function persona()
+    {
+        return $this->belongsTo(RhTrnPersona::class, 'persona_id');
+    }
+    public function adjunto()
+    {
+        return $this->belongsTo(RhTrnAdjunto::class, 'adjunto_id');
+    }
 }

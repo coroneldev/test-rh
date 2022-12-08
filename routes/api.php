@@ -66,7 +66,7 @@ Route::delete('/ciudades/{id}', [RhClCiudadController::class, 'destroy']);
 Route::get('/adjuntos', [RhTrnAdjuntoController::class, 'index']);
 Route::post('/adjuntos', [RhTrnAdjuntoController::class, 'store']);
 Route::get('/adjuntos/{id}', [RhTrnAdjuntoController::class, 'show']);
-Route::post('/adjuntos/{id}', [RhTrnAdjuntoController::class, 'update']);
+Route::put('/adjuntos/{id}', [RhTrnAdjuntoController::class, 'update']);
 
 Route::get('/personas', [RhTrnPersonaController::class, 'index']);
 Route::post('/personas', [RhTrnPersonaController::class, 'store']);
@@ -104,6 +104,7 @@ Route::get('/idiomas-personas/persona/{id}', [RhTrnIdiomaController::class, 'idi
 Route::post('/idiomas-personas', [RhTrnIdiomaController::class, 'store']);
 Route::get('/idiomas-personas/{id}', [RhTrnIdiomaController::class, 'show']);
 Route::put('/idiomas-personas/{id}', [RhTrnIdiomaController::class, 'update']);
+Route::delete('/idiomas-personas/{id}', [RhTrnIdiomaController::class, 'destroy']);
 
 Route::get('/instituciones', [RhClInstitucionController::class, 'index']);
 Route::post('/instituciones', [RhClInstitucionController::class, 'store']);
@@ -137,6 +138,7 @@ Route::delete('/cursos/{id}', [RhTrnCursosController::class, 'destroy']);
 Route::get('/declaraciones-juradas', [RhTrnDeclaracionJuradaController::class, 'index']);
 Route::post('/declaraciones-juradas', [RhTrnDeclaracionJuradaController::class, 'store']);
 Route::get('/declaraciones-juradas/{id}', [RhTrnDeclaracionJuradaController::class, 'show']);
+Route::get('/declaraciones-juradas/persona/{id}', [RhTrnDeclaracionJuradaController::class, 'declaracionJuradaPersonaId']);
 Route::put('/declaraciones-juradas/{id}', [RhTrnDeclaracionJuradaController::class, 'update']);
 Route::delete('/declaraciones-juradas/{id}', [RhTrnDeclaracionJuradaController::class, 'destroy']);
 

@@ -14,7 +14,6 @@ class RhTrnPersonaController extends Controller
      */
     public function index()
     {
-
         $personas = RhTrnPersona::all()->first()::with('adjunto', 'genero', 'estadoCivil', 'pais', 'ciudad')->first();   
         return response()->json([
             'status'    => true,

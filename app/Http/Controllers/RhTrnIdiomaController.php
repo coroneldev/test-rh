@@ -14,30 +14,12 @@ class RhTrnIdiomaController extends Controller
      */
     public function index()
     {
-        $idiomasPersonas = RhTrnIdioma::all();
 
+        $idiomasPersonas = RhTrnIdioma::all()->first()::with('persona', 'idioma', 'adjunto', 'estado')->first();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de idiomas personas recuperadas exitosamente',
             'data'      => $idiomasPersonas
-        ], 200);
-    }
-
-    public function idiomaPersonaId($id)
-    {
-        $idiomaPersona = RhTrnIdioma::where('persona_id', $id)->get();
-
-        if (is_null($idiomaPersona)) {
-            return response()->json([
-                'status'    => false,
-                'message'   => 'Solicitud de registro no encontrado'
-            ], 200);
-        }
-
-        return response()->json([
-            'status'    => true,
-            'message'   => 'Registro de experiencias recuperados exitosamente',
-            'data'      => $idiomaPersona
         ], 200);
     }
 
@@ -54,7 +36,7 @@ class RhTrnIdiomaController extends Controller
         $idiomasPersonas->nivel_conocimiento  = $request->nivel_conocimiento;
         $idiomasPersonas->persona_id          = $request->persona_id;
         $idiomasPersonas->idioma_id           = $request->idioma_id;
-        if($request->adjunto_id != 0){
+        if ($request->adjunto_id != 0) {
             $idiomasPersonas->adjunto_id      = $request->adjunto_id;
         }
         $idiomasPersonas->estado_id           = $request->estado_id;
@@ -75,7 +57,7 @@ class RhTrnIdiomaController extends Controller
      */
     public function show($id)
     {
-        $idiomaPersona = RhTrnIdioma::find($id);
+        $idiomaPersona = RhTrnIdioma::find($id)::with('persona', 'idioma', 'adjunto', 'estado')->first();
 
         if (is_null($idiomaPersona)) {
             return response()->json([
@@ -87,6 +69,24 @@ class RhTrnIdiomaController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $idiomaPersona
+        ], 200);
+    }
+
+    public function idiomaPersonaId($id)
+    {
+        $idiomaPersona = RhTrnIdioma::find($id)::with('persona', 'idioma', 'adjunto', 'estado')->first();
+
+        if (is_null($idiomaPersona)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de experiencias recuperados exitosamente',
             'data'      => $idiomaPersona
         ], 200);
     }
@@ -137,6 +137,22 @@ class RhTrnIdiomaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $idiomaPersona = RhtrnIdioma::find($id);
+
+        if (is_null($idiomaPersona)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Registro de persona no encontrado'
+            ], 404);
+        }
+
+       // $idiomaPersona->activo   = false;
+        $idiomaPersona->delete();
+
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Registro de persona eliminado exitosamente',
+            'data'      => $idiomaPersona
+        ], 200);
     }
 }

@@ -14,8 +14,8 @@ class RhTrnDeclaracionJuradaController extends Controller
      */
     public function index()
     {
-        
-        $declaraciones = RhTrnDeclaracionJurada::where('activo', '=', 'true')->get();
+        $declaraciones = RhTrnDeclaracionJurada::all()->first()::with('persona', 'adjunto')->first();
+        //$declaraciones = RhTrnDeclaracionJurada::where('activo', '=', 'true')->get();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de declaraciones recuperadas exitosamente',
@@ -56,7 +56,7 @@ class RhTrnDeclaracionJuradaController extends Controller
      */
     public function show($id)
     {
-        $declaracion = RhTrnDeclaracionJurada::find($id);
+        $declaracion = RhTrnDeclaracionJurada::find($id)->with('persona', 'adjunto')->first();
 
         if (is_null($declaracion)) {
             return response()->json([
@@ -65,6 +65,22 @@ class RhTrnDeclaracionJuradaController extends Controller
             ], 404);
         }
 
+        return response()->json([
+            'status'    => true,
+            'message'   => 'Solicitud de registro recuperado exitosamente',
+            'data'      => $declaracion
+        ], 200);
+    }
+
+    public function declaracionJuradaPersonaId($id)
+    {
+        $declaracion = RhTrnDeclaracionJurada::where('persona_id', $id)->first()->with('persona', 'adjunto')->first();
+        if (is_null($declaracion)) {
+            return response()->json([
+                'status'    => false,
+                'message'   => 'Solicitud de registro no encontrado'
+            ], 200);
+        }
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
