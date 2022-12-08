@@ -15,6 +15,7 @@ class RhTrnAdjuntoController extends Controller
      */
     public function index()
     {
+        echo "hola";
         $adjuntos = RhTrnAdjunto::all();
 
         return response()->json([
@@ -32,26 +33,29 @@ class RhTrnAdjuntoController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = Validator::make($request->all(),
-        [
-            // 'path' => 'required|mimes:jpg, png, jpeg|max:2048',
-            // 'path' => 'required|mimes:pdf|max:2048',
-            'path' => 'required|max:2048',
-            'tipo' => 'required',
-        ],
-        [
-            'path.required' => 'El campo del enlace de direccion es requerido',
-            'tipo.required' => 'El campo tipo adjunto es requerido',
+        $validate = Validator::make(
+            $request->all(),
+            [
+                // 'path' => 'required|mimes:jpg, png, jpeg|max:2048',
+                // 'path' => 'required|mimes:pdf|max:2048',
+                'path' => 'required|max:2048',
+                'tipo' => 'required',
+            ],
+            [
+                'path.required' => 'El campo del enlace de direccion es requerido',
+                'tipo.required' => 'El campo tipo adjunto es requerido',
 
-        ]);
-        
-        if($validate->fails()){
+            ]
+        );
+
+        if ($validate->fails()) {
             return response()->json(
                 [
                     'status' => false,
-                    'message'=> 'validation error',
+                    'message' => 'validation error',
                     'errors' => $validate->errors()
-                ], 200
+                ],
+                200
             );
         }
 
@@ -62,7 +66,7 @@ class RhTrnAdjuntoController extends Controller
 
         $adjunto->path  = $path_adjunto;
         $adjunto->tipo  = $request->tipo;
-        
+
 
         $adjunto->save();
 
@@ -71,7 +75,6 @@ class RhTrnAdjuntoController extends Controller
             'message'   => 'Registro de archivo creado exitosamente',
             'data'      => $adjunto
         ], 201);
-
     }
 
     /**
@@ -82,6 +85,7 @@ class RhTrnAdjuntoController extends Controller
      */
     public function show($id)
     {
+
         $adjunto = RhTrnAdjunto::find($id);
 
         if (is_null($adjunto)) {
@@ -107,7 +111,7 @@ class RhTrnAdjuntoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $adjunto = RhTrnAdjunto::find($id);
 
         if (is_null($adjunto)) {
@@ -118,24 +122,27 @@ class RhTrnAdjuntoController extends Controller
         }
 
 
-        $validate = Validator::make($request->all(),
-        [
-            'path' => 'required',
-            'tipo' => 'required',
-        ],
-        [
-            'path.required' => 'El campo del enlace de direccion es requerido',
-            'tipo.required' => 'El campo tipo adjunto es requerido',
+        $validate = Validator::make(
+            $request->all(),
+            [
+                'path' => 'required',
+                'tipo' => 'required',
+            ],
+            [
+                'path.required' => 'El campo del enlace de direccion es requerido',
+                'tipo.required' => 'El campo tipo adjunto es requerido',
 
-        ]);
-        
-        if($validate->fails()){
+            ]
+        );
+
+        if ($validate->fails()) {
             return response()->json(
                 [
                     'status' => false,
-                    'message'=> 'validation error',
+                    'message' => 'validation error',
                     'errors' => $validate->errors()
-                ], 401
+                ],
+                401
             );
         }
 
@@ -151,7 +158,6 @@ class RhTrnAdjuntoController extends Controller
             'message'   => 'Registro de archivo creado exitosamente',
             'data'      => $adjunto
         ], 200);
-
     }
 
     /**

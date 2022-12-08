@@ -75,7 +75,7 @@ class RhTrnFormacionController extends Controller
         return response()->json([
             'status'    => true,
             'message'   => 'Registro modificado exitosamente',
-            'data'      => $formacion
+            'data'      => $formacion = RhTrnPersona::with(["adjunto"])->get()
         ]);
     }
 

@@ -2,11 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
-
-use App\Http\Resources\RhTrnPersona as ModeloResource;
-
-
 use Illuminate\Http\Request;
 use App\Models\RhTrnPersona;
 
@@ -19,16 +14,13 @@ class RhTrnPersonaController extends Controller
      */
     public function index()
     {
-           $personas = RhTrnPersona::all()->load('adjunto', 'estadoCivil', 'genero', 'pais', 'ciudad');
-        // $personas = RhTrnPersona::where('activo', '=', 'true')->get();
-           return response()->json([
+
+        $personas = RhTrnPersona::all()->first()::with('adjunto', 'genero', 'estadoCivil', 'pais', 'ciudad')->first();   
+        return response()->json([
             'status'    => true,
             'message'   => 'Registro de generos recuperadas exitosamente',
             'data'      => $personas
         ], 200);
-      //  $collection = RhTrnPersona::with(["genero", "estadoCivil"])->with("estadoCivil")->get();
-
-       // return ModeloResource::collection($collection);
     }
 
 
@@ -90,8 +82,7 @@ class RhTrnPersonaController extends Controller
      */
     public function show($id)
     {
-        $persona = RhTrnPersona::find($id);
-
+        $persona = RhTrnPersona::find($id)::with(['adjunto'])->first();
 
         if (is_null($persona)) {
             return response()->json([
@@ -99,11 +90,10 @@ class RhTrnPersonaController extends Controller
                 'message'   => 'Solicitud de registro no encontrado'
             ], 404);
         }
-
         return response()->json([
             'status'    => true,
             'message'   => 'Solicitud de registro recuperado exitosamente',
-            'data'      => $persona 
+            'data'      => $persona
         ], 200);
     }
 
@@ -114,6 +104,7 @@ class RhTrnPersonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         $persona = RhTrnPersona::find($id);
