@@ -58,8 +58,8 @@ class RhTrnIdiomaController extends Controller
      */
     public function show($id)
     {
-        // $idiomaPersona = RhTrnIdioma::find($id)::with('persona', 'idioma', 'adjunto', 'estado')->first();
-        $idiomaPersona = RhTrnIdioma::find($id);
+         $idiomaPersona = RhTrnIdioma::find($id)::with('adjunto')->first();
+       // $idiomaPersona = RhTrnIdioma::find($id);
         if (is_null($idiomaPersona)) {
             return response()->json([
                 'status'    => false,
