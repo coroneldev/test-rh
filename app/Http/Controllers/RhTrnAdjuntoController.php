@@ -38,12 +38,12 @@ class RhTrnAdjuntoController extends Controller
                 // 'path' => 'required|mimes:jpg, png, jpeg|max:2048',
                 // 'path' => 'required|mimes:pdf|max:2048',
                 'path'          => 'required|max:2048',
-                'tipo'          => 'required',
+               // 'tipo'          => 'required',
                 'nombre'        => 'required',
             ],
             [
                 'path.required'      => 'El campo del enlace de direccion es requerido',
-                'tipo.required'      => 'El campo tipo adjunto es requerido',
+              //  'tipo.required'      => 'El campo tipo adjunto es requerido',
                 'nombre.required'    => 'El campo tipo adjunto es requerido',
 
             ]
@@ -66,7 +66,7 @@ class RhTrnAdjuntoController extends Controller
         $adjunto = new RhTrnAdjunto();
 
         $adjunto->path  = $path_adjunto;
-        $adjunto->tipo  = $request->tipo;
+       // $adjunto->tipo  = $request->tipo;
         $adjunto->nombre  = $request->nombre;
 
         $adjunto->save();
@@ -118,12 +118,12 @@ class RhTrnAdjuntoController extends Controller
                 // 'path' => 'required|mimes:jpg, png, jpeg|max:2048',
                 // 'path' => 'required|mimes:pdf|max:2048',
                 'path'          => 'required|max:2048',
-                'tipo'          => 'required',
+              //  'tipo'          => 'required',
                 'nombre'        => 'required',
             ],
             [
                 'path.required'      => 'El campo del enlace de direccion es requerido',
-                'tipo.required'      => 'El campo tipo adjunto es requerido',
+              //  'tipo.required'      => 'El campo tipo adjunto es requerido',
                 'nombre.required'    => 'El campo tipo adjunto es requerido',
 
             ]

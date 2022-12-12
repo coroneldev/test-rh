@@ -13,7 +13,7 @@ class RhTrnAdjunto extends Model
 
     protected $table = 'rh_trn_adjuntos';
 
-    protected $fillable = ['path', 'tipo', 'nombre'];
+    protected $fillable = ['path', 'nombre'];
 
     public function personas()
     {

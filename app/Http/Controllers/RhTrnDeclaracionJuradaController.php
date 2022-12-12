@@ -38,7 +38,6 @@ class RhTrnDeclaracionJuradaController extends Controller
         $declaracion->fecha_fin        = $request->fecha_fin;
         $declaracion->adjunto_id       = $request->adjunto_id;
         $declaracion->persona_id       = $request->persona_id;
-
         $declaracion->save();
 
         return response()->json([
@@ -56,7 +55,7 @@ class RhTrnDeclaracionJuradaController extends Controller
      */
     public function show($id)
     {
-        $declaracion = RhTrnDeclaracionJurada::find($id)->with('persona', 'adjunto')->first();
+        $declaracion = RhTrnDeclaracionJurada::find($id)->with('adjunto')->first();
 
         if (is_null($declaracion)) {
             return response()->json([
@@ -74,7 +73,8 @@ class RhTrnDeclaracionJuradaController extends Controller
 
     public function declaracionJuradaPersonaId($id)
     {
-        $declaracion = RhTrnDeclaracionJurada::where('persona_id', $id)->first()->with('persona', 'adjunto')->first();
+       // $declaracion = RhTrnDeclaracionJurada::where('persona_id', $id)->first()->with('persona', 'adjunto')->first();
+       $declaracion = RhTrnDeclaracionJurada::find($id)->first();
         if (is_null($declaracion)) {
             return response()->json([
                 'status'    => false,

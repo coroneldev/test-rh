@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('rh_trn_adjuntos', function (Blueprint $table) {
             $table->id();
             $table->string('path',255);
-            $table->string('tipo',25);
+          //  $table->string('tipo',25);
             $table->string('nombre',255);
             $table->softDeletes();
             $table->timestamps();
