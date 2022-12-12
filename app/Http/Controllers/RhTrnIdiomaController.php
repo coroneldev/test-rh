@@ -15,7 +15,8 @@ class RhTrnIdiomaController extends Controller
     public function index()
     {
 
-        $idiomasPersonas = RhTrnIdioma::all()->first()::with('persona', 'idioma', 'adjunto', 'estado')->first();
+        // $idiomasPersonas = RhTrnIdioma::all()->first()::with('persona', 'idioma', 'adjunto', 'estado')->first();
+        $idiomasPersonas = RhTrnIdioma::all();
         return response()->json([
             'status'    => true,
             'message'   => 'Registro de idiomas personas recuperadas exitosamente',
@@ -57,8 +58,8 @@ class RhTrnIdiomaController extends Controller
      */
     public function show($id)
     {
-        $idiomaPersona = RhTrnIdioma::find($id)::with('persona', 'idioma', 'adjunto', 'estado')->first();
-
+        // $idiomaPersona = RhTrnIdioma::find($id)::with('persona', 'idioma', 'adjunto', 'estado')->first();
+        $idiomaPersona = RhTrnIdioma::find($id);
         if (is_null($idiomaPersona)) {
             return response()->json([
                 'status'    => false,
@@ -73,9 +74,12 @@ class RhTrnIdiomaController extends Controller
         ], 200);
     }
 
+    
+
     public function idiomaPersonaId($id)
     {
-        $idiomaPersona = RhTrnIdioma::find($id)::with('persona', 'idioma', 'adjunto', 'estado')->first();
+        //$idiomaPersona = RhTrnIdioma::find($id)::with('persona', 'idioma', 'adjunto', 'estado')->first();
+        $idiomaPersona = RhTrnIdioma::where('persona_id', $id)->with('idioma', 'estado')->get();
 
         if (is_null($idiomaPersona)) {
             return response()->json([
@@ -146,7 +150,7 @@ class RhTrnIdiomaController extends Controller
             ], 404);
         }
 
-       // $idiomaPersona->activo   = false;
+        // $idiomaPersona->activo   = false;
         $idiomaPersona->delete();
 
         return response()->json([
